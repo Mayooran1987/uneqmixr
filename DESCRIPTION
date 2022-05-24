@@ -1,0 +1,23 @@
+Package: uneqmixr
+Type: Package
+Title: Modelling the Quantity of Material Sampled in the Risk Assessment
+Version: 0.0.1
+Authors@R: c(
+          person("Mayooran", "Thevaraja", email = "mayooran@eng.jfn.ac.lk", role = c("aut", "cre")),
+          person("Kondaswamy", "Govindaraju", email = "k.govindaraju@massey.ac.nz", role = "aut"),
+          person("Mark", "Bebbington", email = "m.bebbington@massey.ac.nz", role = "aut")
+          )
+Authors: Mayooran Thevaraja [aut, cre], Kondaswamy Govindaraju [aut], Mark Bebbington [aut]
+URL: https://github.com/Mayooran1987/uneqmix
+BugReports: https://github.com/Mayooran1987/uneqmix/issues
+Description: This package develops to study microbiological risk assessment of mixing primary samples in the powdered products using simulation results.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Imports: ggplot2, ggthemes, reshape2, stats
+Suggests: 
+    testthat
+RoxygenNote: 7.1.2
+Depends: R (>= 4.0)
+Maintainer: Mayooran Thevaraja <mayooran@eng.jfn.ac.lk>
+Language: en-US
