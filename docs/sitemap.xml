@@ -13,6 +13,21 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/scenarious_1_OC.html</loc>
+    <loc>/reference/scenario_1_OC.html</loc>
+  </url>
+  <url>
+    <loc>/reference/scenario_1_pd.html</loc>
+  </url>
+  <url>
+    <loc>/reference/scenario_2_OC.html</loc>
+  </url>
+  <url>
+    <loc>/reference/scenario_2_pd.html</loc>
+  </url>
+  <url>
+    <loc>/reference/scenario_3_OC.html</loc>
+  </url>
+  <url>
+    <loc>/reference/scenario_3_pd.html</loc>
   </url>
 </urlset>

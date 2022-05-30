@@ -1,2 +1,4 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("stats", "sd")
+importFrom("stats", "sd", "rnorm", "rpois")
+importFrom("extraDistr", "rgpois")
+
