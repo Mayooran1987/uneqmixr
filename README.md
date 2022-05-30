@@ -1,4 +1,4 @@
-<!-- [![Build Status](https://travis-ci.com/Mayooran1987/uneqmix.svg?branch=main)](https://travis-ci.com/Mayooran1987/uneqmixr)-->
+[![Build Status](https://travis-ci.com/Mayooran1987/uneqmix.svg?branch=main)](https://travis-ci.com/Mayooran1987/uneqmixr)
 
 <!-- <style> -->
 
@@ -23,7 +23,7 @@ devtools::install_github("Mayooran1987/uneqmixr")
 
 ### User manual
 
-This package’s user manual can be seen at <https://github.com/Mayooran1987/uneqmixr/raw/main/uneqmixr_0.0.1.pdf>
+This package’s user manual can be seen at <https://github.com/Mayooran1987/uneqmixr/blob/main/uneqmixr_0.0.1.pdf>
 
 <!-- ### An analytical sample preparation process for microorganisms  -->
 

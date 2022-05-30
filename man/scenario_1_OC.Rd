@@ -23,10 +23,10 @@ scenario_1_OC(mulow, muhigh, sd, m, m1, n)
 Operating Characteristic (OC) curves under lot with homogeneous contaminations.
 }
 \description{
-\code{\link{scenario_2_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
+\code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
 }
 \details{
-\code{\link{scenario_2_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
+\code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
 Under this scenario (lot with homogeneous contaminations), we employed Poisson distribution to the model number of micro-organisms in the incremental samples.
 The purpose of this function used for compares different sets of sampling schemes when lot with heterogeneous and high-level contamination.
 Under this scenario expected cell count in each incremental sample can be written in terms of the based incremental sample's expected cell count (for this study, the based sample is a sample that is to be the minimum quantity).

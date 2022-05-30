@@ -1,4 +1,4 @@
-##' \code{\link{scenario_2_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
+##' \code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
 ##' @title Construction of  Operating Characteristic (OC) curve under lot with homogeneous contaminations.
 ##' @param mulow the lower value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.
 ##' @param muhigh the upper value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.
@@ -6,7 +6,7 @@
 ##' @param m the quantity (weight) of the aggregate sample.
 ##' @param m1 the quantity (weight) of the based sample for the risk assessment (for this research, we used a quantity of sample which is to be the minimum quantity of selected incremental samples).
 ##' @param n number of aggregate samples which are used for inspection.
-##' @details \code{\link{scenario_2_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
+##' @details \code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
 ##' Under this scenario (lot with homogeneous contaminations), we employed Poisson distribution to the model number of micro-organisms in the incremental samples.
 ##' The purpose of this function used for compares different sets of sampling schemes when lot with heterogeneous and high-level contamination.
 ##' Under this scenario expected cell count in each incremental sample can be written in terms of the based incremental sample's expected cell count (for this study, the based sample is a sample that is to be the minimum quantity).
