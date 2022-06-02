@@ -1,4 +1,4 @@
-[![R build status](https://github.com/Mayooran1987/uneqmixr/workflows/R-CMD-check/badge.svg)](https://github.com/Mayooran1987/uneqmixr/actions) <!-- <style> -->
+[![R build status](https://github.com/Mayooran1987/uneqmixr/workflows/R-CMD-check/badge.svg)](https://github.com/Mayooran1987/uneqmixr/actions) <!-- <style> --> [![pages-build-deployment](https://github.com/Mayooran1987/uneqmixr/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Mayooran1987/uneqmixr/actions/workflows/pages/pages-build-deployment)
 
 <!-- <style> -->
 
