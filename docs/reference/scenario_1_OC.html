@@ -61,7 +61,7 @@
 <dd><p>the upper value of the mean concentration (\(\mu\)) for use in the graphical display's x-axis.</p></dd>
 <dt>sd</dt>
 <dd><p>standard deviation on the log10 scale (default value 0.8).</p></dd>
-<dt>m</dt>
+<dt>M</dt>
 <dd><p>the quantity (weight) of the aggregate sample.</p></dd>
 <dt>m1</dt>
 <dd><p>the quantity (weight) of the based sample for the risk assessment (for this research, we used a quantity of sample which is to be the minimum quantity of selected incremental samples).</p></dd>
@@ -97,7 +97,7 @@ The probability of acceptance is plotted against mean log10 concentration and ex
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">mulow</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">6</span></span>
 <span class="r-in"><span class="va">muhigh</span> <span class="op">&lt;-</span> <span class="fl">0</span></span>
 <span class="r-in"><span class="va">sd</span> <span class="op">&lt;-</span> <span class="fl">0.8</span></span>
-<span class="r-in"><span class="va">m</span> <span class="op">&lt;-</span> <span class="fl">25</span></span>
+<span class="r-in"><span class="va">M</span> <span class="op">&lt;-</span> <span class="fl">60</span></span>
 <span class="r-in"><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">10</span>,<span class="fl">15</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
 <span class="r-in"><span class="fu">scenario_1_OC</span><span class="op">(</span><span class="va">mulow</span>, <span class="va">muhigh</span>, <span class="va">sd</span>, <span class="va">m</span>, <span class="va">m1</span>, <span class="va">n</span><span class="op">)</span></span>
