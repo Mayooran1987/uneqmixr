@@ -4,7 +4,7 @@
 \alias{scenario_1_OC}
 \title{Construction of  Operating Characteristic (OC) curve under lot with homogeneous contaminations.}
 \usage{
-scenario_1_OC(mulow, muhigh, sd, m, m1, n)
+scenario_1_OC(mulow, muhigh, sd, M, m1, n)
 }
 \arguments{
 \item{mulow}{the lower value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.}
@@ -13,7 +13,7 @@ scenario_1_OC(mulow, muhigh, sd, m, m1, n)
 
 \item{sd}{standard deviation on the log10 scale (default value 0.8).}
 
-\item{m}{the quantity (weight) of the aggregate sample.}
+\item{M}{the quantity (weight) of the aggregate sample.}
 
 \item{m1}{the quantity (weight) of the based sample for the risk assessment (for this research, we used a quantity of sample which is to be the minimum quantity of selected incremental samples).}
 
@@ -36,10 +36,10 @@ The probability of acceptance is plotted against mean log10 concentration and ex
 mulow <- -6
 muhigh <- 0
 sd <- 0.8
-m <- 25
+M <- 60
 m1 <- c(5,10,15)
 n <- 10
-scenario_1_OC(mulow, muhigh, sd, m, m1, n)
+scenario_1_OC(mulow, muhigh, sd, M, m1, n)
 }
 \seealso{
 \link{scenario_1_pd}

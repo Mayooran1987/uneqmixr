@@ -30,18 +30,18 @@ Operating Characteristic (OC) curves when lot with heterogeneous and high-level 
 \details{
 \code{\link{scenario_2_OC}} provides the Operating Characteristic (OC) curves under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
 The purpose of this function used for compares two different sets of sampling schemes when lot with heterogeneous and high-level contamination.
-Nevertheless, each sampling scheme's total quantity (weight of aggregate sample) must be equal.
+Nevertheless, each sampling scheme's total quantity (weight of aggregate sample (say M)) must be equal.
 The probability of acceptance is plotted against mean log10 concentration and expected cell counts.
 We employed Poisson lognormal distribution to the model number of micro-organisms in the incremental samples. Based on the food safety literature, the expected cell count is given by \eqn{\lambda = 10^{\mu+log(10)\sigma^2/2}}. (this section will be updated later on)
 }
 \examples{
-mulow <- -8
+mulow <- -10
 muhigh <- 0
 sd <- 0.8
 m1 <- c(10,10,10,10,10,10)
 m2 <- c(10,12,18,20)
 n <- 10
-n_sim <- 100000
+n_sim <- 500000
 scenario_2_OC(mulow, muhigh, sd, m1, m2, n, n_sim)
 }
 \seealso{

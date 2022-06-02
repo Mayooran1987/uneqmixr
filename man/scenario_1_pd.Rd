@@ -4,12 +4,12 @@
 \alias{scenario_1_pd}
 \title{Probability of detection estimation when lot with homogeneous contaminations.}
 \usage{
-scenario_1_pd(lambda, m, m1)
+scenario_1_pd(lambda, M, m1)
 }
 \arguments{
 \item{lambda}{expected cell count in the based sample (for this research, we used a quantity of sample which is to be the minimum quantity of selected incremental samples).}
 
-\item{m}{the quantity (weight) of the aggregate sample.}
+\item{M}{the quantity (weight) of the aggregate sample.}
 
 \item{m1}{the quantity (weight) of the based sample for the risk assessment.}
 }
@@ -25,7 +25,7 @@ Under this scenario (a lot with homogeneous contaminations), we employed Poisson
 }
 \examples{
 lambda <- 0.05
-m <- 25
+M <- 60
 m1 <- 5
-scenario_1_pd(lambda, m, m1)
+scenario_1_pd(lambda, M, m1)
 }

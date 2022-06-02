@@ -3,7 +3,7 @@
 ##' @param mulow the lower value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.
 ##' @param muhigh the upper value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.
 ##' @param sd standard deviation on the log10 scale (default value 0.8).
-##' @param m the quantity (weight) of the aggregate sample.
+##' @param M the quantity (weight) of the aggregate sample.
 ##' @param m1 the quantity (weight) of the based sample for the risk assessment (for this research, we used a quantity of sample which is to be the minimum quantity of selected incremental samples).
 ##' @param n number of aggregate samples which are used for inspection.
 ##' @details \code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
@@ -17,17 +17,17 @@
 ##' mulow <- -6
 ##' muhigh <- 0
 ##' sd <- 0.8
-##' m <- 25
+##' M <- 60
 ##' m1 <- c(5,10,15)
 ##' n <- 10
-##' scenario_1_OC(mulow, muhigh, sd, m, m1, n)
-##' @usage  scenario_1_OC(mulow, muhigh, sd, m, m1, n)
+##' scenario_1_OC(mulow, muhigh, sd, M, m1, n)
+##' @usage  scenario_1_OC(mulow, muhigh, sd, M, m1, n)
 ##' @export
-scenario_1_OC <- function(mulow, muhigh, sd = 0.8, m, m1, n){
+scenario_1_OC <- function(mulow, muhigh, sd = 0.8, M, m1, n){
   P_a <- NULL
   Sampling_scheme <- NULL
   f_spr <- function(m1,m) {
-    sprintf("Scheme(m_1=%.0f, m=%.0f)", m1, m)
+    sprintf("Scheme(m_1=%.0f, M=%.0f)", m1, M)
   }
   mu <- seq(mulow, muhigh, 0.01)
   lambda <- 10^(mu + ((sd^2)/2) * log(10, exp(1)))
@@ -38,13 +38,13 @@ scenario_1_OC <- function(mulow, muhigh, sd = 0.8, m, m1, n){
   Pa <- matrix(NA, nrow = length(mu), ncol = length(m1))
   for (j in 1:length(m1)) {
     for (i in 1:length(lambda)) {
-      Pa[i,j] <-  (1 - scenario_1_pd(lambda[i],m,m1[j]))^n
+      Pa[i,j] <-  (1 - scenario_1_pd(lambda[i],M,m1[j]))^n
     }
   }
 
   # pa <- (1-pd)^n
   Prob <- data.frame(mu, Pa)
-  colnames(Prob ) <- c("mu", f_spr(m1,m))
+  colnames(Prob ) <- c("mu", f_spr(m1,M))
   melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "P_a")
   plot_sam <- ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = P_a, group = Sampling_scheme, colour = Sampling_scheme)) +
     # ggplot2::ggtitle("OC curve based on Lognormal distribution") +
