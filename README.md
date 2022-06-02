@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Mayooran1987/uneqmix.svg?branch=main)](https://travis-ci.com/Mayooran1987/uneqmixr)
+[![R build status](https://github.com/Mayooran1987/uneqmixr/workflows/R-CMD-check/badge.svg)](https://github.com/Mayooran1987/uneqmixr/actions) <!-- <style> -->
 
 <!-- <style> -->
 
