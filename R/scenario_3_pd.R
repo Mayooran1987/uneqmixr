@@ -13,7 +13,7 @@
 ##' sd <- 0.8
 ##' m <- c(5,10,15,5,10,10,5)
 ##' K <- 0.05
-##' n_sim <- 50000
+##' n_sim <- 100000
 ##' scenario_3_pd(mu, sd, m, K, n_sim)
 ##' @usage  scenario_3_pd(mu, sd, m, K, n_sim)
 ##' @export

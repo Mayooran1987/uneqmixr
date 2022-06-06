@@ -11,7 +11,7 @@
 ##' mu <- -3
 ##' sd <- 0.8
 ##' m <- c(5,10,15,5,10,10,5)
-##' n_sim <- 50000
+##' n_sim <- 100000
 ##' scenario_2_pd(mu, sd, m, n_sim)
 ##' @usage  scenario_2_pd(mu, sd, m, n_sim)
 ##' @export
