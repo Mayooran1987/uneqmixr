@@ -4,9 +4,11 @@
 \alias{scenario_1B_OC}
 \title{Construction of  Operating Characteristic (OC) curve under lot with homogeneous contaminations based on simulations results.}
 \usage{
-scenario_1B_OC(mulow, muhigh, sd, m1, m2, n, n_sim)
+scenario_1B_OC(c, mulow, muhigh, sd, m1, m2, n, n_sim)
 }
 \arguments{
+\item{c}{acceptance number}
+
 \item{mulow}{the lower value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.}
 
 \item{muhigh}{the upper value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.}
@@ -19,7 +21,7 @@ scenario_1B_OC(mulow, muhigh, sd, m1, m2, n, n_sim)
 
 \item{n}{number of aggregate samples which are used for inspection.}
 
-\item{n_sim}{number of simulations (large simulations provide more precious estimation).}
+\item{n_sim}{number of simulations (large simulations provide more precise estimation).}
 }
 \value{
 Operating Characteristic (OC) curves when lot with homogeneous contaminations.
@@ -35,6 +37,7 @@ The probability of acceptance is plotted against mean log10 concentration and ex
 We employed Poisson distribution to the model number of micro-organisms in the incremental samples. Based on the food safety literature, the expected cell count is given by \eqn{\lambda = 10^{\mu+log(10)\sigma^2/2}}. (this section will be updated later on)
 }
 \examples{
+c <- 0
 mulow <- -6
 muhigh <- 0
 sd <- 0.8
@@ -42,7 +45,7 @@ m1 <- c(10,10,10,10,10,10)
 m2 <- c(10,12,18,20)
 n <- 10
 n_sim <- 100000
-scenario_1B_OC(mulow, muhigh, sd, m1, m2, n, n_sim)
+scenario_1B_OC(c, mulow, muhigh, sd, m1, m2, n, n_sim)
 }
 \seealso{
 \link{scenario_1B_pd}

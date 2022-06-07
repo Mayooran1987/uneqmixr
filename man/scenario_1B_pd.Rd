@@ -13,7 +13,7 @@ scenario_1B_pd(mu, sd, m, n_sim)
 
 \item{m}{the vector of incremental samples (with equal/unequal weights).}
 
-\item{n_sim}{number of simulations (large simulations provide more precious estimation).}
+\item{n_sim}{number of simulations (large simulations provide more precise estimation).}
 }
 \value{
 Probability of detection when lot with homogeneous contaminants by simulations results.

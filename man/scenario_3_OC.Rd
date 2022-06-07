@@ -4,9 +4,11 @@
 \alias{scenario_3_OC}
 \title{Construction of  Operating Characteristic (OC) curve under lot with heterogeneous and low-level contamination.}
 \usage{
-scenario_3_OC(mulow, muhigh, sd, m1, m2, K, n, n_sim)
+scenario_3_OC(c, mulow, muhigh, sd, m1, m2, K, n, n_sim)
 }
 \arguments{
+\item{c}{acceptance number}
+
 \item{mulow}{the lower value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.}
 
 \item{muhigh}{the upper value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.}
@@ -21,7 +23,7 @@ scenario_3_OC(mulow, muhigh, sd, m1, m2, K, n, n_sim)
 
 \item{n}{number of aggregate samples which are used for inspection.}
 
-\item{n_sim}{number of simulations (large simulations provide more precious estimation).}
+\item{n_sim}{number of simulations (large simulations provide more precise estimation).}
 }
 \value{
 Operating Characteristic (OC) curves when lot with heterogeneous and low-level contamination.
@@ -36,6 +38,7 @@ Nevertheless, each sampling scheme's total quantity (weight of aggregate sample 
 We employed Poisson gamma distribution to the model number of micro-organisms in the incremental samples. Based on the food safety literature, the expected cell count is given by \eqn{\lambda = 10^{\mu+log(10)\sigma^2/2}}. (this section will be updated later on)
 }
 \examples{
+c <- 0
 mulow <- -5
 muhigh <- 2
 sd <- 0.8
@@ -44,7 +47,7 @@ m2 <- c(10,12,18,20)
 K <- 0.05
 n <- 10
 n_sim <- 100000
-scenario_3_OC(mulow, muhigh, sd, m1, m2, K, n, n_sim)
+scenario_3_OC(c, mulow, muhigh, sd, m1, m2, K, n, n_sim)
 }
 \seealso{
 \link{scenario_3_pd}

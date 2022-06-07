@@ -15,7 +15,7 @@ scenario_3_pd(mu, sd, m, K, n_sim)
 
 \item{K}{shape parameter (default value 0.25).}
 
-\item{n_sim}{number of simulations (large simulations provide more precious estimation).}
+\item{n_sim}{number of simulations (large simulations provide more precise estimation).}
 }
 \value{
 Probability of detection when lot with heterogeneous and low-level contamination.

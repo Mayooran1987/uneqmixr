@@ -1,12 +1,13 @@
 ##' \code{\link{scenario_1B_OC}} provides the Operating Characteristic (OC) curves under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
 ##' @title Construction of  Operating Characteristic (OC) curve under lot with homogeneous contaminations based on simulations results.
+##' @param c acceptance number
 ##' @param mulow the lower value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.
 ##' @param muhigh the upper value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.
 ##' @param sd standard deviation on the log10 scale (default value 0.8).
 ##' @param m1 the vector of the first set of incremental samples (with equal/unequal weights).
 ##' @param m2 the vector of the second set of incremental samples (with equal/unequal weights).
 ##' @param n number of aggregate samples which are used for inspection.
-##' @param n_sim number of simulations (large simulations provide more precious estimation).
+##' @param n_sim number of simulations (large simulations provide more precise estimation).
 ##' @details \code{\link{scenario_1B_OC}} provides the Operating Characteristic (OC) curves under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
 ##' The purpose of this function used for compares two different sets of sampling schemes when lot with homogeneous contaminations.
 ##' Nevertheless, each sampling scheme's total quantity (weight of aggregate sample (say M)) must be equal.
@@ -15,6 +16,7 @@
 ##' @return Operating Characteristic (OC) curves when lot with homogeneous contaminations.
 ##' @seealso  \link{scenario_1B_pd}
 ##' @examples
+##' c <- 0
 ##' mulow <- -6
 ##' muhigh <- 0
 ##' sd <- 0.8
@@ -22,10 +24,10 @@
 ##' m2 <- c(10,12,18,20)
 ##' n <- 10
 ##' n_sim <- 100000
-##' scenario_1B_OC(mulow, muhigh, sd, m1, m2, n, n_sim)
-##' @usage  scenario_1B_OC(mulow, muhigh, sd, m1, m2, n, n_sim)
+##' scenario_1B_OC(c, mulow, muhigh, sd, m1, m2, n, n_sim)
+##' @usage  scenario_1B_OC(c, mulow, muhigh, sd, m1, m2, n, n_sim)
 ##' @export
-scenario_1B_OC <- function(mulow, muhigh, sd = 0.8, m1, m2, n, n_sim){
+scenario_1B_OC <- function(c, mulow, muhigh, sd = 0.8, m1, m2, n, n_sim){
   P_a <- NULL
   Sampling_scheme <- NULL
   M <- sum(m1)
@@ -41,10 +43,12 @@ scenario_1B_OC <- function(mulow, muhigh, sd = 0.8, m1, m2, n, n_sim){
 
   Pa <- matrix(NA, nrow = length(mu), ncol = 2)
   for (i in 1:length(mu)) {
-    for (j in 1:2) {
-      Pa[i,1] <-  (1 - scenario_1B_pd(mu[i],sd,m1,n_sim))^n
-      Pa[i,2] <-  (1 - scenario_1B_pd(mu[i],sd,m2,n_sim))^n
-    }
+    # for (j in 1:2) {
+      # Pa[i,1] <-  (1 - scenario_1B_pd(mu[i],sd,m1,n_sim))^n
+      # Pa[i,2] <-  (1 - scenario_1B_pd(mu[i],sd,m2,n_sim))^n
+      Pa[i,1] <-  scenario_1B_pa(c, mu[i], sd, m1, n, n_sim)
+      Pa[i,2] <-  scenario_1B_pa(c, mu[i], sd, m2, n, n_sim)
+    # }
   }
   # pa <- (1-pd)^n
   Prob <- data.frame(mu, Pa)

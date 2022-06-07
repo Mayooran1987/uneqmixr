@@ -4,9 +4,11 @@
 \alias{scenario_1A_OC}
 \title{Construction of  Operating Characteristic (OC) curve under lot with homogeneous contaminations.}
 \usage{
-scenario_1A_OC(mulow, muhigh, sd, M, m1, n)
+scenario_1A_OC(c, mulow, muhigh, sd, M, m1, n)
 }
 \arguments{
+\item{c}{acceptance number}
+
 \item{mulow}{the lower value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.}
 
 \item{muhigh}{the upper value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.}
@@ -33,13 +35,14 @@ Under this scenario expected cell count in each incremental sample can be writte
 The probability of acceptance is plotted against mean log10 concentration and expected cell counts. Based on the food safety literature, the expected cell count is given by \eqn{\lambda = 10^{\mu+log(10)\sigma^2/2}}. (this section will be updated later on)
 }
 \examples{
+c <- 0
 mulow <- -6
 muhigh <- 0
 sd <- 0.8
 M <- 60
 m1 <- c(5,10,15)
 n <- 10
-scenario_1A_OC(mulow, muhigh, sd, M, m1, n)
+scenario_1A_OC(c, mulow, muhigh, sd, M, m1, n)
 }
 \seealso{
 \link{scenario_1A_pd}
