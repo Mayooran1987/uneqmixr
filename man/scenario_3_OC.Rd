@@ -51,8 +51,7 @@ m2 <- c(10,15,15,20,20,15,15,15,15,20,10,10,20,20,10,20,10,15,15,20,20,15,
 15,15,15,20,10,10,20,20,10,20)
 K <- 0.05
 n <- 10
-n_sim <- 100000
-scenario_3_OC(c, mulow, muhigh, sd, m1, m2, K, n, type, n_sim)
+scenario_3_OC(c, mulow, muhigh, sd, m1, m2, K, n, , type = "theory")
 }
 \seealso{
 \link{scenario_3_pd}
