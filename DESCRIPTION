@@ -16,8 +16,7 @@ Encoding: UTF-8
 LazyData: true
 Imports: extraDistr, ggplot2, ggthemes, reshape2, stats
 Suggests: 
-    spelling,
-    testthat
+    spelling, testthat
 RoxygenNote: 7.2.0
 Depends: R (>= 4.0)
 Maintainer: Mayooran Thevaraja <mayooran@eng.jfn.ac.lk>

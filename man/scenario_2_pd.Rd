@@ -4,7 +4,7 @@
 \alias{scenario_2_pd}
 \title{Probability of detection estimation when lot with heterogeneous and high-level contamination.}
 \usage{
-scenario_2_pd(mu, sd, m, n_sim)
+scenario_2_pd(mu, sd, m, type, n_sim)
 }
 \arguments{
 \item{mu}{the the mean concentration (\eqn{\mu}).}
@@ -13,10 +13,12 @@ scenario_2_pd(mu, sd, m, n_sim)
 
 \item{m}{the vector of incremental samples (with equal/unequal weights).}
 
+\item{type}{what type of the results you would like to consider such as "theory" or "simulation".}
+
 \item{n_sim}{number of simulations (large simulations provide more precise estimation).}
 }
 \value{
-Probability of detection when lot with heterogeneous and high-level contamination.
+Probability of detection when lot with heterogeneous and high-level contamination by using theoretical or simulations based results.
 }
 \description{
 \code{\link{scenario_2_pd}} provides a probability of detection under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
@@ -28,7 +30,9 @@ Under this scenario (a lot with heterogeneous, high-level contamination), we emp
 \examples{
 mu <- -3
 sd <- 0.8
-m <- c(5,10,15,5,10,10,5)
-n_sim <- 100000
-scenario_2_pd(mu, sd, m, n_sim)
+m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
+scenario_2_pd(mu, sd = 0.8, m, type = "theory")
+scenario_2_pd(mu, sd = 0.8, m, type = "simulation", n_sim = 1000000)
 }

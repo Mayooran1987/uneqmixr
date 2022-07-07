@@ -2,30 +2,37 @@
 % Please edit documentation in R/scenario_1_pd.R
 \name{scenario_1_pd}
 \alias{scenario_1_pd}
-\title{Probability of detection estimation when lot with homogeneous contaminations.}
+\title{Probability of detection estimation when lot with homogeneous contaminations based on simulations.}
 \usage{
-scenario_1_pd(lambda, M, m1)
+scenario_1_pd(mu, sd, m, type, n_sim)
 }
 \arguments{
-\item{lambda}{expected cell count in the based sample (for this research, we used a quantity of sample which is to be the minimum quantity of selected incremental samples).}
+\item{mu}{the the mean concentration (\eqn{\mu}).}
 
-\item{M}{the quantity (weight) of the aggregate sample.}
+\item{sd}{standard deviation on the log10 scale (default value 0.8).}
 
-\item{m1}{the quantity (weight) of the based sample for the risk assessment.}
+\item{m}{the vector of incremental samples (with equal/unequal weights).}
+
+\item{type}{what type of the results you would like to consider such as "theory" or "simulation".}
+
+\item{n_sim}{number of simulations (large simulations provide more precise estimation).}
 }
 \value{
-Probability of detection under lot with homogeneous contaminations.
+Probability of detection when lot with homogeneous contaminants by using theoretical or simulations based results.
 }
 \description{
 \code{\link{scenario_1_pd}} provides a probability of detection under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
 }
 \details{
 \code{\link{scenario_1_pd}} provides a probability of detection under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
-Under this scenario (a lot with homogeneous contaminations), we employed Poisson distribution to the model number of micro-organisms in the incremental samples. Based on the food safety literature, the expected cell count is given by \eqn{\lambda = 10^{\mu+log(10)\sigma^2/2}}. (this section will be updated later on)
+Under this scenario (lot with homogeneous contaminations), we employed Poisson distribution to the model number of micro-organisms in the incremental samples. Based on the food safety literature, the expected cell count is given by \eqn{\lambda = 10^{\mu+log(10)\sigma^2/2}}. (this section will be updated later on)
 }
 \examples{
-lambda <- 0.05
-M <- 60
-m1 <- 5
-scenario_1_pd(lambda, M, m1)
+mu <- -3
+sd <- 0.8
+m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
+scenario_1_pd(mu, sd = 0.8, m, type = "theory")
+scenario_1_pd(mu, sd = 0.8, m, type = "simulation", n_sim = 1000000)
 }

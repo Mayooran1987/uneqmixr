@@ -4,7 +4,7 @@
 \alias{scenario_2_OC}
 \title{Construction of  Operating Characteristic (OC) curve under lot with heterogeneous and high-level contamination.}
 \usage{
-scenario_2_OC(c, mulow, muhigh, sd, m1, m2, n, n_sim)
+scenario_2_OC(c, mulow, muhigh, sd, m1, m2, n, type, n_sim)
 }
 \arguments{
 \item{c}{acceptance number}
@@ -21,6 +21,8 @@ scenario_2_OC(c, mulow, muhigh, sd, m1, m2, n, n_sim)
 
 \item{n}{number of aggregate samples which are used for inspection.}
 
+\item{type}{what type of the results you would like to consider such as "theory" or "simulation".}
+
 \item{n_sim}{number of simulations (large simulations provide more precise estimation).}
 }
 \value{
@@ -30,7 +32,7 @@ Operating Characteristic (OC) curves when lot with heterogeneous and high-level 
 \code{\link{scenario_2_OC}} provides the Operating Characteristic (OC) curves under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
 }
 \details{
-\code{\link{scenario_2_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
+\code{\link{scenario_2_OC}} provides the Operating Characteristic (OC) curves under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
 The purpose of this function used for compares two different sets of sampling schemes when lot with heterogeneous and high-level contamination.
 Nevertheless, each sampling scheme's total quantity (weight of aggregate sample (say M)) must be equal.
 The probability of acceptance is plotted against mean log10 concentration and expected cell counts.
@@ -41,11 +43,14 @@ c <- 0
 mulow <- -10
 muhigh <- 0
 sd <- 0.8
-m1 <- c(10,10,10,10,10,10)
-m2 <- c(10,12,18,20)
+m1 <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
+m2 <- c(10,15,15,20,20,15,15,15,15,20,10,10,20,20,10,20,10,15,15,20,20,15,
+15,15,15,20,10,10,20,20,10,20)
 n <- 10
-n_sim <- 100000
-scenario_2_OC(c, mulow, muhigh, sd, m1, m2, n, n_sim)
+scenario_2_OC(c, mulow, muhigh, sd = 0.8, m1, m2, n, type = "theory")
+scenario_2_OC(c, mulow, muhigh, sd = 0.8, m1, m2, n, type = "simulation", n_sim = 1000000)
 }
 \seealso{
 \link{scenario_2_pd}

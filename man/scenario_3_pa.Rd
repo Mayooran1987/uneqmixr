@@ -4,7 +4,7 @@
 \alias{scenario_3_pa}
 \title{Probability of acceptance  estimation when lot with heterogeneous and low-level contamination.}
 \usage{
-scenario_3_pa(c, mu, sd, m, n, K, n_sim)
+scenario_3_pa(c, mu, sd, m, K,  n, type, n_sim)
 }
 \arguments{
 \item{c}{acceptance number}
@@ -15,9 +15,11 @@ scenario_3_pa(c, mu, sd, m, n, K, n_sim)
 
 \item{m}{the vector of incremental samples (with equal/unequal weights).}
 
+\item{K}{shape parameter (default value 0.25).}
+
 \item{n}{number of aggregate samples which are used for inspection.}
 
-\item{K}{shape parameter (default value 0.25).}
+\item{type}{what type of the results you would like to consider such as "theory" or "simulation".But,not yet established for this scenario at this time.}
 
 \item{n_sim}{number of simulations (large simulations provide more precise estimation).}
 }
@@ -25,19 +27,21 @@ scenario_3_pa(c, mu, sd, m, n, K, n_sim)
 Probability of acceptance  when lot with heterogeneous and low-level contamination.
 }
 \description{
-\code{\link{scenario_3_pa}} provides a probability of acceptance  under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
+\code{\link{scenario_3_pa}} provides a probability of acceptance  under scenario 3 of modelling the quantity of material sampled in the risk assessment study.
 }
 \details{
-\code{\link{scenario_3_pa}} provides a probability of acceptance  under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
+\code{\link{scenario_3_pa}} provides a probability of acceptance  under scenario 3 of modelling the quantity of material sampled in the risk assessment study.
 Under this scenario (a lot with heterogeneous, low-level contamination), we employed Poisson gamma distribution to the model number of micro-organisms in the incremental samples. Based on the food safety literature, the expected cell count is given by \eqn{\lambda = 10^{\mu+log(10)\sigma^2/2}}. (this section will be updated later on)
 }
 \examples{
 c <- 0
 mu <- -3
 sd <- 0.8
-m <- c(5,10,15,5,10,10,5)
-n <- 10
+m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 K <- 0.25
-n_sim <- 100000
-scenario_3_pa(c, mu, sd, m, n, K, n_sim)
+n <- 10
+scenario_3_pa(c, mu, sd = 0.8, m, K, n, type = "theory")
+scenario_3_pa(c, mu, sd = 0.8, m, K, n, type = "simulation", n_sim = 1000000)
 }

@@ -4,7 +4,7 @@
 \alias{AOQL_scenarios}
 \title{Construction of  AOQ curve and calculate AOQL value based on average microbial counts}
 \usage{
-AOQL_scenarios(c,llim, sd, m, n, scenario, K, n_sim)
+AOQL_scenarios(c,llim, sd, m, scenario, n, type, K, n_sim)
 }
 \arguments{
 \item{c}{acceptance number}
@@ -15,9 +15,11 @@ AOQL_scenarios(c,llim, sd, m, n, scenario, K, n_sim)
 
 \item{m}{the vector of incremental samples (with equal/unequal weights).}
 
+\item{scenario}{what scenario we have considered such as  \code{"1"}or \code{"2"}or \code{"3"}}
+
 \item{n}{number of aggregate samples which are used for inspection.}
 
-\item{scenario}{what scenario we have considered such as  \code{"1B"}or \code{"2"}or \code{"3"}}
+\item{type}{what type of the results you would like to consider such as "theory" or "simulation".}
 
 \item{K}{dispersion parameter of the Poisson gamma distribution (default value 0.25)}
 
@@ -35,16 +37,18 @@ Since \eqn{P_a} is the probability of acceptance, \eqn{\lambda} is the arithmeti
 }
 \examples{
 c <- 0
-llim <- 0.5
+llim <- 0.02
 sd <- 0.8
-m1 <- c(10,10,10,10,10,10)
-m2 <- c(10,12,18,20)
+m1 <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
+m2 <- c(10,15,15,20,20,15,15,15,15,20,10,10,20,20,10,20,10,15,15,20,20,15,
+15,15,15,20,10,10,20,20,10,20)
+scenario <- "1"
 n <- 10
-scenario <- "1B"
-n_sim <- 100000
-AOQL_scenarios(c,llim, sd, m=m1, n, scenario, K, n_sim)
-AOQL_scenarios(c,llim, sd, m=m2, n, scenario, K, n_sim)
+AOQL_scenarios(c,llim, sd, m = m1,  scenario, n, type = "theory")
+AOQL_scenarios(c,llim, sd, m = m2,  scenario, n, type = "theory")
 }
 \seealso{
-\link{scenario_1B_pa}, \link{scenario_2_pa},\link{scenario_3_pa}
+\link{scenario_1_pa}, \link{scenario_2_pa}, \link{scenario_3_pa}
 }

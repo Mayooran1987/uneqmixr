@@ -2,44 +2,55 @@
 % Please edit documentation in R/scenario_1_OC.R
 \name{scenario_1_OC}
 \alias{scenario_1_OC}
-\title{Construction of  Operating Characteristic (OC) curve under lot with homogeneous contaminations.}
+\title{Construction of  Operating Characteristic (OC) curve under lot with homogeneous contaminations based on simulations results.}
 \usage{
-scenario_1_OC(mulow, muhigh, sd, M, m1, n)
+scenario_1_OC(c, mulow, muhigh, sd, m1, m2, n, type, n_sim)
 }
 \arguments{
+\item{c}{acceptance number}
+
 \item{mulow}{the lower value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.}
 
 \item{muhigh}{the upper value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.}
 
 \item{sd}{standard deviation on the log10 scale (default value 0.8).}
 
-\item{M}{the quantity (weight) of the aggregate sample.}
+\item{m1}{the vector of the first set of incremental samples (with equal/unequal weights).}
 
-\item{m1}{the quantity (weight) of the based sample for the risk assessment (for this research, we used a quantity of sample which is to be the minimum quantity of selected incremental samples).}
+\item{m2}{the vector of the second set of incremental samples (with equal/unequal weights).}
 
 \item{n}{number of aggregate samples which are used for inspection.}
+
+\item{type}{what type of the results you would like to consider such as "theory" or "simulation".}
+
+\item{n_sim}{number of simulations (large simulations provide more precise estimation).}
 }
 \value{
-Operating Characteristic (OC) curves under lot with homogeneous contaminations.
+Operating Characteristic (OC) curves when lot with homogeneous contaminations.
 }
 \description{
-\code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
+\code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
 }
 \details{
-\code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
-Under this scenario (lot with homogeneous contaminations), we employed Poisson distribution to the model number of micro-organisms in the incremental samples.
-The purpose of this function used for compares different sets of sampling schemes when lot with heterogeneous and high-level contamination.
-Under this scenario expected cell count in each incremental sample can be written in terms of the based incremental sample's expected cell count (for this study, the based sample is a sample that is to be the minimum quantity).
-The probability of acceptance is plotted against mean log10 concentration and expected cell counts. Based on the food safety literature, the expected cell count is given by \eqn{\lambda = 10^{\mu+log(10)\sigma^2/2}}. (this section will be updated later on)
+\code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
+The purpose of this function used for compares two different sets of sampling schemes when lot with homogeneous contaminations.
+Nevertheless, each sampling scheme's total quantity (weight of aggregate sample (say M)) must be equal.
+The probability of acceptance is plotted against mean log10 concentration and expected cell counts.
+We employed Poisson distribution to the model number of micro-organisms in the incremental samples. Based on the food safety literature, the expected cell count is given by \eqn{\lambda = 10^{\mu+log(10)\sigma^2/2}}. (this section will be updated later on)
 }
 \examples{
+c <- 0
 mulow <- -6
 muhigh <- 0
 sd <- 0.8
-M <- 60
-m1 <- c(5,10,15)
+m1 <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
+m2 <- c(10,15,15,20,20,15,15,15,15,20,10,10,20,20,10,20,10,15,15,20,20,15,
+15,15,15,20,10,10,20,20,10,20)
 n <- 10
-scenario_1_OC(mulow, muhigh, sd, M, m1, n)
+scenario_1_OC(c, mulow, muhigh, sd = 0.8, m1, m2, n, type = "theory")
+scenario_1_OC(c, mulow, muhigh, sd = 0.8, m1, m2, n, type = "simulation", n_sim = 1000000)
 }
 \seealso{
 \link{scenario_1_pd}

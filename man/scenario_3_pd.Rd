@@ -4,7 +4,7 @@
 \alias{scenario_3_pd}
 \title{Probability of detection estimation when lot with heterogeneous and low-level contamination.}
 \usage{
-scenario_3_pd(mu, sd, m, K, n_sim)
+scenario_3_pd(mu, sd, m, K, type, n_sim)
 }
 \arguments{
 \item{mu}{the the mean concentration (\eqn{\mu}).}
@@ -15,23 +15,27 @@ scenario_3_pd(mu, sd, m, K, n_sim)
 
 \item{K}{shape parameter (default value 0.25).}
 
+\item{type}{what type of the results you would like to consider such as "theory" or "simulation".}
+
 \item{n_sim}{number of simulations (large simulations provide more precise estimation).}
 }
 \value{
-Probability of detection when lot with heterogeneous and low-level contamination.
+Probability of detection when lot with heterogeneous and low-level contamination by using theoretical or simulations based results.
 }
 \description{
-\code{\link{scenario_3_pd}} provides a probability of detection under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
+\code{\link{scenario_3_pd}} provides a probability of detection under scenario 3 of modelling the quantity of material sampled in the risk assessment study.
 }
 \details{
-\code{\link{scenario_3_pd}} provides a probability of detection under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
+\code{\link{scenario_3_pd}} provides a probability of detection under scenario 3 of modelling the quantity of material sampled in the risk assessment study.
 Under this scenario (a lot with heterogeneous, low-level contamination), we employed Poisson gamma distribution to the model number of micro-organisms in the incremental samples. Based on the food safety literature, the expected cell count is given by \eqn{\lambda = 10^{\mu+log(10)\sigma^2/2}}. (this section will be updated later on)
 }
 \examples{
 mu <- -3
 sd <- 0.8
-m <- c(5,10,15,5,10,10,5)
+m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 K <- 0.05
-n_sim <- 100000
-scenario_3_pd(mu, sd, m, K, n_sim)
+scenario_3_pd(mu, sd = 0.8, m, K, type = "theory")
+scenario_3_pd(mu, sd = 0.8, m, K, type = "simulation", n_sim = 1000000)
 }

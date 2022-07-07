@@ -1,5 +1,6 @@
-[![R build status](https://github.com/Mayooran1987/uneqmixr/workflows/R-CMD-check/badge.svg)](https://github.com/Mayooran1987/uneqmixr/actions) <!-- <style> --> [![pages-build-deployment](https://github.com/Mayooran1987/uneqmixr/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Mayooran1987/uneqmixr/actions/workflows/pages/pages-build-deployment) [![R](https://github.com/Mayooran1987/uneqmixr/actions/workflows/r.yml/badge.svg)](https://github.com/Mayooran1987/uneqmixr/actions/workflows/r.yml)
+<!-- [![Build Status](https://travis-ci.com/Mayooran1987/uneqmix.svg?branch=main)](https://travis-ci.com/Mayooran1987/uneqmixr)-->
 
+[![R build status](https://github.com/Mayooran1987/uneqmixr/workflows/R-CMD-check/badge.svg)](https://github.com/Mayooran1987/uneqmixr/actions) <!-- <style> --> [![pages-build-deployment](https://github.com/Mayooran1987/uneqmixr/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Mayooran1987/uneqmixr/actions/workflows/pages/pages-build-deployment) [![R](https://github.com/Mayooran1987/uneqmixr/actions/workflows/r.yml/badge.svg)](https://github.com/Mayooran1987/uneqmixr/actions/workflows/r.yml)
 <!-- <style> -->
 
 <!-- body {text-align: justify} -->

@@ -4,7 +4,7 @@
 \alias{scenario_2_pa}
 \title{Probability of acceptance estimation when lot with heterogeneous and high-level contamination.}
 \usage{
-scenario_2_pa(c, mu, sd, m, n, n_sim)
+scenario_2_pa(c, mu, sd, m, n, type, n_sim)
 }
 \arguments{
 \item{c}{acceptance number}
@@ -16,6 +16,8 @@ scenario_2_pa(c, mu, sd, m, n, n_sim)
 \item{m}{the vector of incremental samples (with equal/unequal weights).}
 
 \item{n}{number of aggregate samples which are used for inspection.}
+
+\item{type}{what type of the results you would like to consider such as "theory" or "simulation".But,not yet established for this scenario at this time.}
 
 \item{n_sim}{number of simulations (large simulations provide more precise estimation).}
 }
@@ -33,8 +35,10 @@ Under this scenario (a lot with heterogeneous, high-level contamination), we emp
 c <- 0
 mu <- -3
 sd <- 0.8
-m <- c(5,10,15,5,10,10,5)
+m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
+5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 n <- 10
-n_sim <- 100000
-scenario_2_pa(c, mu, sd, m, n, n_sim)
+scenario_2_pa(c, mu, sd = 0.8, m, n, type = "theory")
+scenario_2_pa(c, mu, sd = 0.8, m, n, type = "simulation", n_sim = 1000000)
 }
