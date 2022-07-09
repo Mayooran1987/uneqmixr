@@ -18,20 +18,20 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: macOS-latest,   r: 'release', check_options: '"--no-build-vignettes", "--no-examples"'}
-          - {os: windows-latest, r: 'release', check_options: '"--no-build-vignettes", "--no-examples"'}
+          - {os: macOS-latest,   r: 'release', check_options: '"--no-examples"'}
+          - {os: windows-latest, r: 'release', check_options: '"--no-examples"'}
           # Use 3.6 to trigger usage of RTools35
           # - {os: windows-latest, r: '3.6'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release', check_options: '"--no-build-vignettes", "--no-examples"'}
-          - {os: ubuntu-latest,   r: 'release', check_options: '"--no-build-vignettes", "--no-examples"'}
-          - {os: ubuntu-latest,   r: 'oldrel-1', check_options: '"--no-build-vignettes", "--no-examples"'}
+          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release', check_options: '"--no-examples"'}
+          - {os: ubuntu-latest,   r: 'release', check_options: '"--no-examples"'}
+          - {os: ubuntu-latest,   r: 'oldrel-1', check_options: '"--no-examples"'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
-      _R_CHECK_FORCE_SUGGESTS_: false
-      # Some packages might unavailable on the older versions, so let's ignore xref warnings
-      _R_CHECK_RD_XREFS_: false
+     # _R_CHECK_FORCE_SUGGESTS_: false
+      ## Some packages might unavailable on the older versions, so let's ignore xref warnings
+     # _R_CHECK_RD_XREFS_: false
 
 
     steps:
