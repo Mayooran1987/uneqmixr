@@ -30,7 +30,7 @@ Graphical displays based on expectation or variance when lot with heterogeneous 
 Under this scenario (a lot with homogeneous contaminations), we employed Poisson lognormal distribution to the model number of micro-organisms in the incremental samples. (this section will be updated later on)
 }
 \examples{
-mulow <- 0
+mulow <- -2
 muhigh <- 2
 m1 <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,

@@ -32,8 +32,8 @@ AOQ curve and AOQL value based on expected microbial counts in each scenario.
 \code{\link{AOQL_scenarios}} provides the Average Outgoing Quality (AOQ) curve and calculates Average Outgoing Quality Level (AOQL) value based on expected microbial counts in each scenario.
 }
 \details{
-Since \eqn{P_a} is the probability of acceptance, \eqn{\lambda} is the arithmetic mean of cell count and the outgoing contaminated arithmetic mean of cell count of incremental samples is given by \eqn{AOQ} as the product \eqn{\lambda P_a}.
-          The quantity \eqn{AOQL} is defined as the maximum proportion of outgoing contaminated incremental samples and is given by \deqn{AOQL ={\max_{\lambda \geq 0}}{\lambda P_a}}
+Since \eqn{p_a} is the probability of acceptance, \eqn{\lambda} is the arithmetic mean of cell count and the outgoing contaminated arithmetic mean of cell count of incremental samples is given by \eqn{AOQ} as the product \eqn{\lambda p_a}.
+          The quantity \eqn{AOQL} is defined as the maximum proportion of outgoing contaminated incremental samples and is given by \deqn{AOQL ={\max_{\lambda \geq 0}}{\lambda p_a}}
 }
 \examples{
 c <- 0

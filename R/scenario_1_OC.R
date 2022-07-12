@@ -1,4 +1,4 @@
-##' \code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
+##' \code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
 ##' @title Construction of  Operating Characteristic (OC) curve under lot with homogeneous contaminations based on simulations results.
 ##' @param c acceptance number
 ##' @param mulow the lower value of the mean concentration (\eqn{\mu}) for use in the graphical display's x-axis.
@@ -9,7 +9,7 @@
 ##' @param n number of aggregate samples which are used for inspection.
 ##' @param type what type of the results you would like to consider such as "theory" or "simulation".
 ##' @param n_sim number of simulations (large simulations provide more precise estimation).
-##' @details \code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
+##' @details \code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
 ##' The purpose of this function used for compares two different sets of sampling schemes when lot with homogeneous contaminations.
 ##' Nevertheless, each sampling scheme's total quantity (weight of aggregate sample (say M)) must be equal.
 ##' The probability of acceptance is plotted against mean log10 concentration and expected cell counts.
@@ -82,7 +82,7 @@ scenario_1_OC <- function(c, mulow, muhigh, sd = 0.8, m1, m2, n, type, n_sim = N
   melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "P_a")
   plot_sam <- ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = P_a, group = Sampling_scheme, colour = Sampling_scheme)) +
     # ggplot2::ggtitle("OC curve based on Lognormal distribution") +
-    ggplot2::theme_classic() + ggplot2::xlab(expression("log mean concentration  (" ~ mu*~")")) + ggplot2::ylab(expression(P[a])) + ggthemes::scale_colour_colorblind() +
+    ggplot2::theme_classic() + ggplot2::xlab(expression("log mean concentration  (" ~ mu[0]*~")")) + ggplot2::ylab(expression(P[a])) + ggthemes::scale_colour_colorblind() +
     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), legend.position = c(0.85, 0.75), axis.line.x.top = ggplot2::element_line(color = "red"),
                    axis.ticks.x.top = ggplot2::element_line(color = "red"), axis.text.x.top = ggplot2::element_text(color = "red"), axis.title.x.top = ggplot2::element_text(color = "red")) +
     ggplot2::scale_x_continuous(sec.axis = ggplot2::sec_axis(~., name = "expected cell counts (cfu/g)", breaks = seq(min(mu),max(mu),1),
@@ -90,8 +90,6 @@ scenario_1_OC <- function(c, mulow, muhigh, sd = 0.8, m1, m2, n, type, n_sim = N
   # plot_sam
   return(plot_sam)
 }
-
-
 
 
 

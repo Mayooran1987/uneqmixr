@@ -2,7 +2,7 @@
 % Please edit documentation in R/scenario_1_pd.R
 \name{scenario_1_pd}
 \alias{scenario_1_pd}
-\title{Probability of detection estimation when lot with homogeneous contaminations based on simulations.}
+\title{Probability of detection estimation when lot with homogeneous contaminations.}
 \usage{
 scenario_1_pd(mu, sd, m, type, n_sim)
 }
@@ -18,7 +18,7 @@ scenario_1_pd(mu, sd, m, type, n_sim)
 \item{n_sim}{number of simulations (large simulations provide more precise estimation).}
 }
 \value{
-Probability of detection when lot with homogeneous contaminants by using theoretical or simulations based results.
+Probability of detection when lot with homogeneous contaminants by using theoretical or simulation-based results.
 }
 \description{
 \code{\link{scenario_1_pd}} provides a probability of detection under scenario 1 of modelling the quantity of material sampled in the risk assessment study.

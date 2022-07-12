@@ -29,10 +29,10 @@ scenario_1_OC(c, mulow, muhigh, sd, m1, m2, n, type, n_sim)
 Operating Characteristic (OC) curves when lot with homogeneous contaminations.
 }
 \description{
-\code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
+\code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
 }
 \details{
-\code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
+\code{\link{scenario_1_OC}} provides the Operating Characteristic (OC) curves under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
 The purpose of this function used for compares two different sets of sampling schemes when lot with homogeneous contaminations.
 Nevertheless, each sampling scheme's total quantity (weight of aggregate sample (say M)) must be equal.
 The probability of acceptance is plotted against mean log10 concentration and expected cell counts.

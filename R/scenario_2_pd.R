@@ -7,7 +7,7 @@
 ##' @param n_sim number of simulations (large simulations provide more precise estimation).
 ##' @details \code{\link{scenario_2_pd}} provides a probability of detection under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
 ##' Under this scenario (a lot with heterogeneous, high-level contamination), we employed Poisson lognormal distribution to the model number of micro-organisms in the incremental samples. Based on the food safety literature, the expected cell count is given by \eqn{\lambda = 10^{\mu+log(10)\sigma^2/2}}. (this section will be updated later on)
-##' @return Probability of detection when lot with heterogeneous and high-level contamination by using theoretical or simulations based results.
+##' @return Probability of detection when lot with heterogeneous and high-level contamination by using theoretical or simulation-based results.
 ##' @examples
 ##' mu <- -3
 ##' sd <- 0.8
@@ -63,7 +63,9 @@ scenario_2_pd <- function(mu, sd = 0.8, m, type, n_sim = NA){
       w <- m/sum(m)
       sim1 <- matrix(NA, nrow = n_sim, ncol = k)
       for (j in 1:k) {
-        sim1[,j] <-  rpoislog( n_sim, m[j]*mu/min(m), sd, keep0 = TRUE)*w[j]
+        # sim1[,j] <-  rpoislog( n_sim, m[j]*mu/min(m), sd, keep0 = TRUE)*w[j]
+        sim1[,j] <-  rpoislog( n_sim, (log((m[j]/min(m)),10) + mu), sd, keep0 = TRUE)*w[j]
+        # if X follows PLN(mu, sigma) then cX follows PLN(log(c)+mu, sigma)); where c is any positive constant.
       }
       sim <- apply(sim1, 1, sum)
       pd <- length(which(sim > 0))/n_sim
@@ -73,3 +75,4 @@ scenario_2_pd <- function(mu, sd = 0.8, m, type, n_sim = NA){
     print("please include what type (theory/ simulation) you would like to consider")
   }
 }
+

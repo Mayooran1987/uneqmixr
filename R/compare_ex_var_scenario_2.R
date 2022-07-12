@@ -10,7 +10,7 @@
 ##' Under this scenario (a lot with homogeneous contaminations), we employed Poisson lognormal distribution to the model number of micro-organisms in the incremental samples. (this section will be updated later on)
 ##' @return Graphical displays based on expectation or variance when lot with heterogeneous and high-level contamination.
 ##' @examples
-##' mulow <- 0
+##' mulow <- -2
 ##' muhigh <- 2
 ##' m1 <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
@@ -42,12 +42,12 @@ compare_ex_var_scenario_2 <- function(mulow, muhigh, sd = 0.8, m1, m2, measure =
   # lambda <- 10^(mu + (sd^2/2) * log(10, exp(1)))
 
   scenario_2_expectation <- function(mu,sd,m){
-    expect <-  (exp(0.5*sd^2)/sum(m))*sum(m*exp((m/min(m))*mu))
+    expect <-  (exp(0.5*sd^2)/sum(m))*sum(m*exp(log((m/min(m)),10) + mu))
     return(expect)
   }
 
   scenario_2_variance <- function(mu,sd,m){
-    var <-  (exp(0.5*sd^2)/sum(m))*sum(m*exp((m/min(m))*mu)) + ((exp(sd^2 - 1))*exp(sd^2)/sum(m))*sum(m*exp((2*m/min(m))*mu))
+    var <-  (exp(0.5*sd^2)/sum(m))*sum(m*exp(log((m/min(m)),10) + mu)) + ((exp(sd^2 - 1))*exp(sd^2)/sum(m))*sum(m*exp(log((m/min(m)),10) + mu))
     return(var)
   }
   # mu <- 2
@@ -77,7 +77,7 @@ compare_ex_var_scenario_2 <- function(mulow, muhigh, sd = 0.8, m1, m2, measure =
     melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "variance")
     plot_sam <- ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = variance, group = Sampling_scheme, colour = Sampling_scheme)) +
       # ggplot2::ggtitle("OC curve based on Lognormal distribution") +
-      ggplot2::theme_classic() + ggplot2::xlab(expression("log mean concentration  (" ~ mu*~")")) + ggplot2::ylab(expression(Variance ~ (Y))) + ggthemes::scale_colour_colorblind() +
+      ggplot2::theme_classic() + ggplot2::xlab(expression("log mean concentration  (" ~ mu[0]*~")")) + ggplot2::ylab(expression(Variance ~ (Y))) + ggthemes::scale_colour_colorblind() +
       ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), legend.position = c(0.25, 0.85), axis.line.x.top = ggplot2::element_line(color = "red"),
                      axis.ticks.x.top = ggplot2::element_line(color = "red"), axis.text.x.top = ggplot2::element_text(color = "red"), axis.title.x.top = ggplot2::element_text(color = "red")) +
       ggplot2::scale_x_continuous(sec.axis = ggplot2::sec_axis(~., name = "expected cell counts (cfu/g)", breaks = seq(min(mu),max(mu),1),
@@ -89,7 +89,7 @@ compare_ex_var_scenario_2 <- function(mulow, muhigh, sd = 0.8, m1, m2, measure =
     melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "expectation")
     plot_sam <- ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = expectation, group = Sampling_scheme, colour = Sampling_scheme)) +
       # ggplot2::ggtitle("OC curve based on Lognormal distribution") +
-      ggplot2::theme_classic() + ggplot2::xlab(expression("log mean concentration  (" ~ mu*~")")) + ggplot2::ylab(expression(Expectation ~ (Y))) + ggthemes::scale_colour_colorblind() +
+      ggplot2::theme_classic() + ggplot2::xlab(expression("log mean concentration  (" ~ mu[0]*~")")) + ggplot2::ylab(expression(Expectation ~ (Y))) + ggthemes::scale_colour_colorblind() +
       ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), legend.position = c(0.25, 0.85), axis.line.x.top = ggplot2::element_line(color = "red"),
                      axis.ticks.x.top = ggplot2::element_line(color = "red"), axis.text.x.top = ggplot2::element_text(color = "red"), axis.title.x.top = ggplot2::element_text(color = "red")) +
       ggplot2::scale_x_continuous(sec.axis = ggplot2::sec_axis(~., name = "expected cell counts (cfu/g)", breaks = seq(min(mu),max(mu),1),
@@ -101,4 +101,3 @@ compare_ex_var_scenario_2 <- function(mulow, muhigh, sd = 0.8, m1, m2, measure =
   return(plot_sam)
 
 }
-

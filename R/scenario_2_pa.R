@@ -12,14 +12,14 @@
 ##' @return Probability of acceptance when lot with heterogeneous and high-level contamination.
 ##' @examples
 ##' c <- 0
-##' mu <- -3
+##' mu <- -6
 ##' sd <- 0.8
 ##' m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 ##' n <- 10
 ##' scenario_2_pa(c, mu, sd = 0.8, m, n, type = "theory")
-##' scenario_2_pa(c, mu, sd = 0.8, m, n, type = "simulation", n_sim = 1000000)
+##' scenario_2_pa(c, mu, sd = 0.8, m, n, type = "simulation", n_sim = 200000)
 ##' @usage  scenario_2_pa(c, mu, sd, m, n, type, n_sim)
 ##' @export
 scenario_2_pa <- function(c, mu, sd = 0.8, m, n, type, n_sim = NA){
@@ -30,7 +30,7 @@ scenario_2_pa <- function(c, mu, sd = 0.8, m, n, type, n_sim = NA){
     if (is.na(n_sim) == TRUE) {
       stop("please set the number of simualtions")
       } else {
-      pd <- scenario_2_pd(mu, sd, m, type, n_sim)}
+      pd <- scenario_2_pd(mu, sd, m, type = "simulation", n_sim)}
     pa <- stats::pbinom(c, n, pd)
     return(pa)
     } else {
