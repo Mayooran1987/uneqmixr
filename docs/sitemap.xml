@@ -10,24 +10,66 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/AOQL_scenarios.html</loc>
+  </url>
+  <url>
+    <loc>/reference/compare_ex_var_scenario_1.html</loc>
+  </url>
+  <url>
+    <loc>/reference/compare_ex_var_scenario_2.html</loc>
+  </url>
+  <url>
+    <loc>/reference/compare_ex_var_scenario_3.html</loc>
+  </url>
+  <url>
+    <loc>/reference/compare_prevalence_scenario_4.html</loc>
+  </url>
+  <url>
+    <loc>/reference/compare_prevalence_scenario_5.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
     <loc>/reference/scenario_1_OC.html</loc>
   </url>
   <url>
+    <loc>/reference/scenario_1_pa.html</loc>
+  </url>
+  <url>
     <loc>/reference/scenario_1_pd.html</loc>
+  </url>
+  <url>
+    <loc>/reference/scenario_1_pd_curve.html</loc>
   </url>
   <url>
     <loc>/reference/scenario_2_OC.html</loc>
   </url>
   <url>
+    <loc>/reference/scenario_2_pa.html</loc>
+  </url>
+  <url>
     <loc>/reference/scenario_2_pd.html</loc>
+  </url>
+  <url>
+    <loc>/reference/scenario_2_pd_curve.html</loc>
   </url>
   <url>
     <loc>/reference/scenario_3_OC.html</loc>
   </url>
   <url>
+    <loc>/reference/scenario_3_pa.html</loc>
+  </url>
+  <url>
     <loc>/reference/scenario_3_pd.html</loc>
+  </url>
+  <url>
+    <loc>/reference/scenario_3_pd_curve.html</loc>
+  </url>
+  <url>
+    <loc>/reference/scenario_4_prevalence.html</loc>
+  </url>
+  <url>
+    <loc>/reference/scenario_5_prevalence.html</loc>
   </url>
 </urlset>

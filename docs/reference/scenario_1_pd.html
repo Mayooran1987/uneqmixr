@@ -50,21 +50,36 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">scenario_1_pd</span><span class="op">(</span><span class="va">lambda</span>, <span class="va">m</span>, <span class="va">m1</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">scenario_1_pd</span><span class="op">(</span><span class="va">mu</span>, <span class="va">sd</span>, <span class="va">m</span>, <span class="va">type</span>, <span class="va">n_sim</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>lambda</dt>
-<dd><p>expected cell count in the based sample (for this research, we used a quantity of sample which is to be the minimum quantity of selected incremental samples).</p></dd>
-<dt>M</dt>
-<dd><p>the quantity (weight) of the aggregate sample.</p></dd>
-<dt>m1</dt>
-<dd><p>the quantity (weight) of the based sample for the risk assessment.</p></dd>
+    <dl><dt>mu</dt>
+<dd><p>the the mean concentration (\(\mu\)).</p></dd>
+
+
+<dt>sd</dt>
+<dd><p>standard deviation on the log10 scale (default value 0.8).</p></dd>
+
+
+<dt>m</dt>
+<dd><p>the vector of incremental samples (with equal/unequal weights).</p></dd>
+
+
+<dt>type</dt>
+<dd><p>what type of the results you would like to consider such as "theory" or "simulation".</p></dd>
+
+
+<dt>n_sim</dt>
+<dd><p>number of simulations (large simulations provide more precise estimation).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Probability of detection under lot with homogeneous contaminations.</p>
+    
+
+<p>Probability of detection when lot with homogeneous contaminants by using theoretical or simulation-based results.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -75,16 +90,20 @@ div {
 }
 </style>
     <p><code>scenario_1_pd</code> provides a probability of detection under scenario 1 of modelling the quantity of material sampled in the risk assessment study.
-Under this scenario (a lot with homogeneous contaminations), we employed Poisson distribution to the model number of micro-organisms in the incremental samples. Based on the food safety literature, the expected cell count is given by \(\lambda = 10^{\mu+log(10)\sigma^2/2}\). (this section will be updated later on)</p>
+Under this scenario (lot with homogeneous contaminations), we employed Poisson distribution to the model number of micro-organisms in the incremental samples. Based on the food safety literature, the expected cell count is given by \(\lambda = 10^{\mu+log(10)\sigma^2/2}\). (this section will be updated later on)</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">lambda</span> <span class="op">&lt;-</span> <span class="fl">0.05</span></span>
-<span class="r-in"><span class="va">M</span> <span class="op">&lt;-</span> <span class="fl">60</span></span>
-<span class="r-in"><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
-<span class="r-in"><span class="fu">scenario_1_pd</span><span class="op">(</span><span class="va">lambda</span>, <span class="va">m</span>, <span class="va">m1</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.4511884</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">mu</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">3</span></span></span>
+<span class="r-in"><span><span class="va">sd</span> <span class="op">&lt;-</span> <span class="fl">0.8</span></span></span>
+<span class="r-in"><span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,</span></span>
+<span class="r-in"><span><span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,</span></span>
+<span class="r-in"><span><span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span>,<span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">scenario_1_pd</span><span class="op">(</span><span class="va">mu</span>, sd <span class="op">=</span> <span class="fl">0.8</span>, <span class="va">m</span>, type <span class="op">=</span> <span class="st">"theory"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.4204717</span>
+<span class="r-in"><span><span class="fu">scenario_1_pd</span><span class="op">(</span><span class="va">mu</span>, sd <span class="op">=</span> <span class="fl">0.8</span>, <span class="va">m</span>, type <span class="op">=</span> <span class="st">"simulation"</span>, n_sim <span class="op">=</span> <span class="fl">2000000</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.4204645</span>
 </code></pre></div>
     </div>
   </div>
@@ -99,7 +118,7 @@ Under this scenario (a lot with homogeneous contaminations), we employed Poisson
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>
