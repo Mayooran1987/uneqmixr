@@ -47,7 +47,7 @@ compare_ex_var_scenario_2 <- function(mulow, muhigh, sd = 0.8, m1, m2, measure =
   }
 
   scenario_2_variance <- function(mu,sd,m){
-    var <-  (exp(0.5*sd^2)/sum(m))*sum(m*exp(log((m/min(m)),10) + mu)) + ((exp(sd^2 - 1))*exp(sd^2)/sum(m))*sum(m*exp(log((m/min(m)),10) + mu))
+    var <-  (exp(0.5*sd^2)/sum(m)*sum(m))*sum(m*m*exp(log((m/min(m)),10) + mu)) + ((exp(sd^2 - 1))*exp(sd^2)/sum(m)*sum(m))*sum(m*m*exp(2*log((m/min(m)),10) + mu))
     return(var)
   }
   # mu <- 2
@@ -57,22 +57,22 @@ compare_ex_var_scenario_2 <- function(mulow, muhigh, sd = 0.8, m1, m2, measure =
   # Scnerio_2_variance(mu,sd,m)
 
 
-  Ey <- matrix(NA, nrow = length(mu), ncol = 2)
+  Ex <- matrix(NA, nrow = length(mu), ncol = 2)
   for (i in 1:length(mu)) {
     # for (j in 1:2) {
-    Ey[i,1] <-  scenario_2_expectation(mu[i],sd,m1)
-    Ey[i,2] <-  scenario_2_expectation(mu[i],sd,m2)
+    Ex[i,1] <-  scenario_2_expectation(mu[i],sd,m1)
+    Ex[i,2] <-  scenario_2_expectation(mu[i],sd,m2)
     # }
   }
-  Vy <- matrix(NA, nrow = length(mu), ncol = 2)
+  Va <- matrix(NA, nrow = length(mu), ncol = 2)
   for (i in 1:length(mu)) {
     # for (j in 1:2) {
-    Vy[i,1] <-  scenario_2_variance(mu[i],sd,m1)
-    Vy[i,2] <-  scenario_2_variance(mu[i],sd,m2)
+    Va[i,1] <-  scenario_2_variance(mu[i],sd,m1)
+    Va[i,2] <-  scenario_2_variance(mu[i],sd,m2)
     # }
   }
   if (measure == "variance") {
-    Prob <- data.frame(mu, Vy)
+    Prob <- data.frame(mu, Va)
     colnames(Prob ) <- c("mu", f_spr(1,m1), f_spr(2,m2))
     melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "variance")
     plot_sam <- ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = variance, group = Sampling_scheme, colour = Sampling_scheme)) +
@@ -84,7 +84,7 @@ compare_ex_var_scenario_2 <- function(mulow, muhigh, sd = 0.8, m1, m2, measure =
 
                                                                labels = c(sprintf("%f", 10^(seq(min(mu),max(mu),1) + (sd^2/2) * log(10, exp(1)))))))
   } else if (measure == "expectation") {
-    Prob <- data.frame(mu, Ey)
+    Prob <- data.frame(mu, Ex)
     colnames(Prob ) <- c("mu", f_spr(1,m1), f_spr(2,m2))
     melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "expectation")
     plot_sam <- ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = expectation, group = Sampling_scheme, colour = Sampling_scheme)) +
@@ -101,3 +101,4 @@ compare_ex_var_scenario_2 <- function(mulow, muhigh, sd = 0.8, m1, m2, measure =
   return(plot_sam)
 
 }
+

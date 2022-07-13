@@ -44,15 +44,23 @@ compare_ex_var_scenario_1 <- function(mulow, muhigh, sd = 0.8, m1, m2, measure =
   mu <- seq(mulow, muhigh, 0.01)
   lambda <- 10^(mu + (sd^2/2) * log(10, exp(1)))
 
-  Vy <- matrix(NA, nrow = length(mu), ncol = 2)
+  Ex <- matrix(NA, nrow = length(mu), ncol = 2)
   for (i in 1:length(mu)) {
     # for (j in 1:2) {
-    Vy[i,1] <-  lambda[i]*sum(m1*m1/(min(m1)*sum(m1)))
-    Vy[i,2] <-  lambda[i]*sum(m2*m2/(min(m2)*sum(m2)))
+    Ex[i,1] <-  lambda[i]*sum(m1*m1/(min(m1)*sum(m1)))
+    Ex[i,2] <-  lambda[i]*sum(m2*m2/(min(m2)*sum(m2)))
+    # }
+  }
+
+  Va <- matrix(NA, nrow = length(mu), ncol = 2)
+  for (i in 1:length(mu)) {
+    # for (j in 1:2) {
+    Va[i,1] <-  lambda[i]*sum(m1*m1*m1/(min(m1)*sum(m1)*sum(m1)))
+    Va[i,2] <-  lambda[i]*sum(m2*m2*m2/(min(m2)*sum(m2)*sum(m2)))
     # }
   }
   if (measure == "variance") {
-    Prob <- data.frame(mu, Vy)
+    Prob <- data.frame(mu, Va)
     colnames(Prob ) <- c("mu", f_spr(1,m1), f_spr(2,m2))
     melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "variance")
     plot_sam <- ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = variance, group = Sampling_scheme, colour = Sampling_scheme)) +
@@ -64,7 +72,7 @@ compare_ex_var_scenario_1 <- function(mulow, muhigh, sd = 0.8, m1, m2, measure =
 
                                                                labels = c(sprintf("%f", 10^(seq(min(mu),max(mu),1) + (sd^2/2) * log(10, exp(1)))))))
   } else if (measure == "expectation") {
-    Prob <- data.frame(mu, Vy)
+    Prob <- data.frame(mu, Ex)
     colnames(Prob ) <- c("mu", f_spr(1,m1), f_spr(2,m2))
     melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "expectation")
     plot_sam <- ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = expectation, group = Sampling_scheme, colour = Sampling_scheme)) +
@@ -81,6 +89,4 @@ compare_ex_var_scenario_1 <- function(mulow, muhigh, sd = 0.8, m1, m2, measure =
   return(plot_sam)
 
 }
-
-
 
