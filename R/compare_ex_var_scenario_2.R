@@ -47,7 +47,7 @@ compare_ex_var_scenario_2 <- function(mulow, muhigh, sd = 0.8, m1, m2, measure =
   }
 
   scenario_2_variance <- function(mu,sd,m){
-    var <-  (exp(0.5*sd^2)/sum(m)*sum(m))*sum(m*m*exp(log((m/min(m)),10) + mu)) + ((exp(sd^2 - 1))*exp(sd^2)/sum(m)*sum(m))*sum(m*m*exp(2*log((m/min(m)),10) + mu))
+    var <-  (exp(0.5*sd^2)/(sum(m)*sum(m)))*(sum(m*m*exp(log((m/min(m)),10) + mu))) + (((exp(sd^2) - 1)*exp(sd^2))/(sum(m)*sum(m)))*sum(m*m*exp(2*(log((m/min(m)),10) + mu)))
     return(var)
   }
   # mu <- 2

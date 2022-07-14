@@ -19,8 +19,7 @@
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 ##' m2 <- c(10,15,15,20,20,15,15,15,15,20,10,10,20,20,10,20,10,15,15,20,20,15,
 ##' 15,15,15,20,10,10,20,20,10,20)
-##' scenario_2_pd_curve(mulow, muhigh, sd = 0.8, m1, m2, type = "theory")
-##' scenario_2_pd_curve(mulow, muhigh, sd = 0.8, m1, m2, type = "simulation", n_sim = 100000)
+##' scenario_2_pd_curve(mulow, muhigh, sd = 0.8, m1, m2, type = "simulation", n_sim = 20)
 ##' @usage  scenario_2_pd_curve(mulow, muhigh, sd, m1, m2, type, n_sim)
 ##' @export
 scenario_2_pd_curve <- function(mulow, muhigh, sd = 0.8, m1, m2, type, n_sim = NA){

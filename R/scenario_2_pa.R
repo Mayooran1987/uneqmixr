@@ -12,7 +12,7 @@
 ##' @return Probability of acceptance when lot with heterogeneous and high-level contamination.
 ##' @examples
 ##' c <- 0
-##' mu <- -6
+##' mu <- -3
 ##' sd <- 0.8
 ##' m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,

@@ -14,8 +14,8 @@
 ##' m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
-##' l <- 5000
-##' scenario_5_prevalence(mu, sd, m, l, type = "simulation", n_sim = 20000)
+##' l <- 50
+##' scenario_5_prevalence(mu, sd, m, l, type = "simulation", n_sim = 20)
 ##' @usage  scenario_5_prevalence(mu, sd, m, l, type, n_sim)
 ##' @export
 scenario_5_prevalence <- function(mu, sd =0.8, m, l, type, n_sim = NA ){

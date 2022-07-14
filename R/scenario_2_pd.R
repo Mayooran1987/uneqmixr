@@ -15,7 +15,7 @@
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 ##' scenario_2_pd(mu, sd = 0.8, m, type = "theory")
-##' scenario_2_pd(mu, sd = 0.8, m, type = "simulation", n_sim = 1000000)
+##' scenario_2_pd(mu, sd = 0.8, m, type = "simulation", n_sim = 2000000)
 ##' @usage  scenario_2_pd(mu, sd, m, type, n_sim)
 ##' @export
 scenario_2_pd <- function(mu, sd = 0.8, m, type, n_sim = NA){

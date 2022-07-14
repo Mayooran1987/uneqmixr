@@ -19,7 +19,7 @@
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 ##' n <- 10
 ##' scenario_1_pa(c, mu, sd = 0.8, m, n, type = "theory")
-##' scenario_1_pa(c, mu, sd = 0.8, m, n, type = "simulation", n_sim = 1000000)
+##' scenario_1_pa(c, mu, sd = 0.8, m, n, type = "simulation", n_sim = 2000000)
 ##' @usage  scenario_1_pa(c, mu, sd, m, n, type, n_sim)
 ##' @export
 scenario_1_pa <- function(c, mu, sd = 0.8, m, n, type, n_sim = NA){

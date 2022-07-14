@@ -48,7 +48,7 @@ compare_ex_var_scenario_3 <- function(mulow, muhigh, sd = 0.8, m1, m2, K, measur
     return(expect)
   }
   scenario_3_variance <- function(lambda,K,m){
-    var <-  (K/sum(m)*sum(m))*(sum(m*m*(m/min(m))*lambda) + sum(m*m*m*m/({min(m)}^2)*{lambda}^2))
+    var <-  (K/(sum(m)*sum(m)))*((sum(m*m*m)*lambda/min(m)) + (sum(m*m*m*m)*lambda*lambda/(min(m)*min(m))))
     return(var)
   }
   # mu <- 2

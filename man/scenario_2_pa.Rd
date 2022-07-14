@@ -33,7 +33,7 @@ Under this scenario (a lot with heterogeneous, high-level contamination), we emp
 }
 \examples{
 c <- 0
-mu <- -6
+mu <- -3
 sd <- 0.8
 m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,

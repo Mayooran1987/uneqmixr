@@ -10,7 +10,7 @@ Authors@R: c(
 Authors: Mayooran Thevaraja [aut, cre], Kondaswamy Govindaraju [aut], Mark Bebbington [aut]
 URL: https://github.com/Mayooran1987/uneqmixr
 BugReports: https://github.com/Mayooran1987/uneqmixr/issues
-Description: This package allows general practitioners to get probability estimations and graphical displays in the risk assessment. This study mainly focuses on the risk assessment when aggregating unequal incremental samples in the production process.
+Description: This package allows practitioners to get probability estimations and graphical displays in the risk assessment. This study mainly focuses on the risk assessment when aggregating unequal incremental samples in the production process.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
