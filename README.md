@@ -9,7 +9,7 @@
 
 # ‘uneqmixr’
 
-The 'uneqmix' package aims to develop for estimate probabilities associated with risk assessment when aggregating unequal incremental samples. Also, the package provides graphical displays for different various sampling schemes. Furthermore, description of this package functions is available at <https://mayooran1987.github.io/uneqmixr/reference/index.html>.
+The 'uneqmixr' package aims to develop for estimate probabilities associated with risk assessment when aggregating unequal incremental samples. Also, the package provides graphical displays for different various sampling schemes. Furthermore, description of this package functions is available at <https://mayooran1987.github.io/uneqmixr/reference/index.html>.
 
 <!-- (Note that the web page contains an older version of the package. The most recent version of the page, which is associated with the current version of the package, will be updated soon). -->
 
