@@ -42,5 +42,5 @@ m2 <- c(10,15,15,20,20,15,15,15,15,20,10,10,20,20,10,20,10,15,15,20,20,15,
 15,15,15,20,10,10,20,20,10,20)
 l <- 20000
 compare_prevalence_scenario_5(mulow, muhigh, sd = 0.8, m1, m2, l,
-type = "simulation", n_sim = 50000)
+type = "theory")
 }

@@ -20,7 +20,7 @@
 ##' 15,15,15,20,10,10,20,20,10,20)
 ##' l <- 20000
 ##' compare_prevalence_scenario_5(mulow, muhigh, sd = 0.8, m1, m2, l,
-##' type = "simulation", n_sim = 50000)
+##' type = "theory")
 ##' @usage  compare_prevalence_scenario_5(mulow, muhigh, sd, m1, m2, l, type, n_sim)
 ##' @export
 compare_prevalence_scenario_5 <- function(mulow, muhigh, sd = 0.8, m1, m2, l, type, n_sim = NA){
@@ -38,7 +38,27 @@ compare_prevalence_scenario_5 <- function(mulow, muhigh, sd = 0.8, m1, m2, l, ty
   mu <- seq(mulow, muhigh, 0.001)
   # lambda <- 10^(mu + (sd^2/2) * log(10, exp(1)))
   if (type == "theory") {
-    message("Not yet established, please use simulation-based results")
+    # message("Not yet established, please use simulation-based results")
+    Prev <- matrix(NA, nrow = length(mu), ncol = 2)
+    for (i in 1:length(mu)) {
+      # for (j in 1:2) {
+      Prev[i,1] <-  scenario_5_prevalence(mu[i], sd = 0.8, m1,l, type)
+      Prev[i,2] <-  scenario_5_prevalence(mu[i], sd = 0.8, m2,l, type)
+      # }
+    }
+    Prob <- data.frame(mu, Prev)
+    colnames(Prob ) <- c("mu", f_spr(1,m1),f_spr(2,m2))
+    melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "Prev")
+    plot_sam <- ggplot2::ggplot(melten.Prob,ggplot2::aes(x = mu, y = Prev, group = Sampling_scheme, colour = Sampling_scheme)) +
+      ggplot2::geom_line() +
+      # ggplot2::geom_smooth() +
+      # ggplot2::ggtitle("OC curve based on Lognormal distribution") +
+      ggplot2::theme_classic() + ggplot2::xlab(expression("log mean concentration  (" ~ mu*~")")) + ggplot2::ylab(expression(Prevalance)) + ggthemes::scale_colour_colorblind() +
+      ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), legend.position = c(0.25, 0.75), axis.line.x.top = ggplot2::element_line(color = "red"),
+                     axis.ticks.x.top = ggplot2::element_line(color = "red"), axis.text.x.top = ggplot2::element_text(color = "red"), axis.title.x.top = ggplot2::element_text(color = "red")) +
+      ggplot2::scale_x_continuous(sec.axis = ggplot2::sec_axis(~., name = "expected cell counts (cfu/g)", breaks = seq(min(mu),max(mu),1),
+                                                               labels = c(sprintf("%f", 10^(seq(min(mu),max(mu),1) + (sd^2/2) * log(10, exp(1)))))))
+    return(plot_sam)
   } else if (type == "simulation") {
     if (is.na(n_sim) == TRUE) {
       stop("please set the number of simualtions")
@@ -67,6 +87,5 @@ compare_prevalence_scenario_5 <- function(mulow, muhigh, sd = 0.8, m1, m2, l, ty
     } else {
     print("please include what type (theory/ simulation) you would like to consider")
   }
-
 }
 
