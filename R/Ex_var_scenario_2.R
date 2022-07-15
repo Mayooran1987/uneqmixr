@@ -1,5 +1,5 @@
 ##' \code{\link{Ex_var_scenario_2}} provides the expected value or variance of the number of microorganisms in the aggregate sample under scenario 2 of modelling the quantity of material sampled in the risk assessment study.
-##' @title Expected value or variance of microorganism in the aggregate sample under scenario 2.
+##' @title Expected value or variance estimation of microorganism in the aggregate sample under scenario 2.
 ##' @param mu the the mean concentration (\eqn{\mu}).
 ##' @param sd standard deviation on the log10 scale (default value 0.8).
 ##' @param m the vector of incremental samples (with equal/unequal weights).
@@ -15,9 +15,9 @@
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 ##' Ex_var_scenario_2(mu, sd = 0.8, m, type = "theory",  measure = "expectation")
-##' Ex_var_scenario_2(mu, sd = 0.8, m, type = "simulation",  measure = "expectation", n_sim = 2000)
+##' Ex_var_scenario_2(mu, sd = 0.8, m, type = "simulation",  measure = "expectation", n_sim = 2000000)
 ##' Ex_var_scenario_2(mu, sd = 0.8, m, type = "theory",  measure = "variance")
-##' Ex_var_scenario_2(mu, sd = 0.8, m, type = "simulation",  measure = "variance", n_sim = 2000)
+##' Ex_var_scenario_2(mu, sd = 0.8, m, type = "simulation",  measure = "variance", n_sim = 2000000)
 ##' @usage  Ex_var_scenario_2(mu, sd = 0.8, m, type, measure, n_sim)
 ##' @export
 Ex_var_scenario_2 <- function(mu, sd = 0.8, m, type, measure, n_sim = NA){

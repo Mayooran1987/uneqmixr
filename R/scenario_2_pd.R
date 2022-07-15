@@ -20,7 +20,22 @@
 ##' @export
 scenario_2_pd <- function(mu, sd = 0.8, m, type, n_sim = NA){
   if (type == "theory") {
-    print("Not yet established, please use simulation-based results")
+    # print("Not yet established, please use simulation-based results")
+    prob <- matrix(NA, nrow = length(m), ncol = 1)
+    for (j in 1:length(m)) {
+      # some codes used from "poilog" package
+      dpoilog <- function(n,mu,sig){
+        if (length(mu) > 1 | length(sig) > 1) stop('vectorization of mu and sig is currently not implemented')
+        if (any((n[n != 0]/trunc(n[n != 0])) != 1)) stop('all n must be integers')
+        if (any(n < 0)) stop('one or several values of n are negative')
+        if (!all(is.finite(c(mu,sig)))) stop('all parameters should be finite')
+        if (sig <= 0) stop('sig is not larger than 0')
+        .C('poilog1',n = as.integer(n),mu = as.double(mu),sig2 = as.double(sig^2),nrN = as.integer(length(n)),val = double(length(n)))$val
+      }
+      prob[j,] <- dpoilog( 0, log10(m[j]/min(m)) + mu, sd)
+    }
+    pd <- 1 - apply(prob, 2, prod)
+    return(pd)
   } else if (type == "simulation") {
     if (is.na(n_sim) == TRUE) {
       stop("please set the number of simualtions")

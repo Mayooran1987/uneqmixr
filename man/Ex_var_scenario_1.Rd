@@ -2,7 +2,7 @@
 % Please edit documentation in R/Ex_var_scenario_1.R
 \name{Ex_var_scenario_1}
 \alias{Ex_var_scenario_1}
-\title{Expected value or variance of microorganism in the aggregate sample under scenario 1.}
+\title{Expected value or variance estimation of microorganism in the aggregate sample under scenario 1.}
 \usage{
 Ex_var_scenario_1(mu, sd = 0.8, m, type, measure, n_sim)
 }
@@ -35,7 +35,7 @@ m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 Ex_var_scenario_1(mu, sd = 0.8, m, type = "theory",  measure = "expectation")
-Ex_var_scenario_1(mu, sd = 0.8, m, type = "simulation",  measure = "expectation", n_sim = 200)
+Ex_var_scenario_1(mu, sd = 0.8, m, type = "simulation",  measure = "expectation", n_sim = 2000000)
 Ex_var_scenario_1(mu, sd = 0.8, m, type = "theory",  measure = "variance")
-Ex_var_scenario_1(mu, sd = 0.8, m, type = "simulation",  measure = "variance", n_sim = 200)
+Ex_var_scenario_1(mu, sd = 0.8, m, type = "simulation",  measure = "variance", n_sim = 2000000)
 }

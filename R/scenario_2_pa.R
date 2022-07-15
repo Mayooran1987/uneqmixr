@@ -12,20 +12,22 @@
 ##' @return Probability of acceptance when lot with heterogeneous and high-level contamination.
 ##' @examples
 ##' c <- 0
-##' mu <- -3
+##' mu <- -6
 ##' sd <- 0.8
 ##' m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 ##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 ##' n <- 10
-##' scenario_2_pa(c, mu, sd = 0.8, m, n, type = "theory")
-##' scenario_2_pa(c, mu, sd = 0.8, m, n, type = "simulation", n_sim = 200000)
+##' scenario_2_pa(c, mu, sd, m, n, type = "theory")
+##' scenario_2_pa(c, mu, sd, m, n, type = "simulation", n_sim = 200000)
 ##' @usage  scenario_2_pa(c, mu, sd, m, n, type, n_sim)
 ##' @export
 scenario_2_pa <- function(c, mu, sd = 0.8, m, n, type, n_sim = NA){
   if (type == "theory") {
-    # pd <- scenario_2_pd_theory(mu, sd = 0.8, m)
-    print("Not yet established, please use simulation-based results")
+    # print("Not yet established, please use simulation-based results")
+    pd <- scenario_2_pd(mu, sd, m, type = "theory")
+    pa <- stats::pbinom(c, n, pd)
+    return(pa)
     } else if (type == "simulation") {
     if (is.na(n_sim) == TRUE) {
       stop("please set the number of simualtions")
@@ -37,4 +39,3 @@ scenario_2_pa <- function(c, mu, sd = 0.8, m, n, type, n_sim = NA){
       print("please include what type (theory/ simulation) you would like to consider")
     }
   }
-

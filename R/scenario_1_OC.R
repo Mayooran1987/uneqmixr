@@ -28,6 +28,7 @@
 ##' 15,15,15,20,10,10,20,20,10,20)
 ##' n <- 10
 ##' scenario_1_OC(c, mulow, muhigh, sd = 0.8, m1, m2, n, type = "theory")
+##' scenario_1_OC(c, mulow, muhigh, sd = 0.8, m1, m2, n, type = "simulation", n_sim = 1000000)
 ##' @usage  scenario_1_OC(c, mulow, muhigh, sd, m1, m2, n, type, n_sim)
 ##' @export
 scenario_1_OC <- function(c, mulow, muhigh, sd = 0.8, m1, m2, n, type, n_sim = NA){

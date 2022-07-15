@@ -9,8 +9,8 @@
 ##' @param K dispersion parameter of the Poisson gamma distribution (default value 0.25)
 ##' @param type what type of the results you would like to consider such as "theory" or "simulation".
 ##' @param n_sim number of simulations (large simulations provide more precise estimation).
-##' @details  Since \eqn{P_a} is the probability of acceptance, \eqn{\lambda} is the arithmetic mean of cell count and the outgoing contaminated arithmetic mean of cell count of incremental samples is given by \eqn{AOQ} as the product \eqn{\lambda P_a}.
-##'           The quantity \eqn{AOQL} is defined as the maximum proportion of outgoing contaminated incremental samples and is given by \deqn{AOQL ={\max_{\lambda \geq 0}}{\lambda P_a}}
+##' @details  Since \eqn{p_a} is the probability of acceptance, \eqn{\lambda} is the arithmetic mean of cell count and the outgoing contaminated arithmetic mean of cell count of incremental samples is given by \eqn{AOQ} as the product \eqn{\lambda p_a}.
+##'           The quantity \eqn{AOQL} is defined as the maximum proportion of outgoing contaminated incremental samples and is given by \deqn{AOQL ={\max_{\lambda \geq 0}}{\lambda p_a}}
 ##' @return AOQ curve and AOQL value based on expected microbial counts in each scenario.
 ##' @seealso  \link{scenario_1_pa}, \link{scenario_2_pa}, \link{scenario_3_pa}
 ##' @examples

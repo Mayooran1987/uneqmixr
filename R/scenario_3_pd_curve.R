@@ -83,3 +83,4 @@ scenario_3_pd_curve <- function(mulow, muhigh, sd = 0.8, m1, m2, K = 0.25, type,
   # plot_sam
   return(plot_sam)
 }
+

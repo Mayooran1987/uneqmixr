@@ -27,19 +27,13 @@
 ##' m2 <- c(10,15,15,20,20,15,15,15,15,20,10,10,20,20,10,20,10,15,15,20,20,15,
 ##' 15,15,15,20,10,10,20,20,10,20)
 ##' n <- 10
-##' scenario_2_OC(c, mulow, muhigh, sd = 0.8, m1, m2, n, type = "simulation", n_sim = 100)
+##' scenario_2_OC(c, mulow, muhigh, sd = 0.8, m1, m2, n, type = "theory")
+##' scenario_2_OC(c, mulow, muhigh, sd = 0.8, m1, m2, n, type = "simulation", n_sim = 1000000)
 ##' @usage  scenario_2_OC(c, mulow, muhigh, sd, m1, m2, n, type, n_sim)
 ##' @export
 scenario_2_OC <- function(c, mulow, muhigh, sd = 0.8, m1, m2, n, type, n_sim = NA){
   P_a <- NULL
   Sampling_scheme <- NULL
-  # M <- sum(m1)
-  # if (sum(m1) != sum(m2))
-  #   stop(" weights of aggregate samples are not equal, Please check it")
-  # k <- c(length(m1),length(m2))
-  # f_spr <- function(k,M) {
-  #   sprintf("Scheme(k=%.0f, M=%.0f)", k, M)
-  # }
   f_spr <- function(number,m) {
     M <- sum(m)
     k <- length(m)
@@ -53,14 +47,28 @@ scenario_2_OC <- function(c, mulow, muhigh, sd = 0.8, m1, m2, n, type, n_sim = N
   # lambda <- 10^(mu + (sd^2/2) * log(10, exp(1)))
 
   if (type == "theory") {
-    # Pa <- matrix(NA, nrow = length(mu), ncol = 2)
-    # for (i in 1:length(mu)) {
-    #   # for (j in 1:2) {
-    #   Pa[i,1] <-  scenario_2_pa(c, mu[i], sd = 0.8, m1, n, type = "theory")
-    #   Pa[i,2] <-  scenario_2_pa(c, mu[i], sd = 0.8, m2, n, type = "theory")
-    #   # }
-    # }
-    print("Not yet established, please use simulation-based results")
+    Pa <- matrix(NA, nrow = length(mu), ncol = 2)
+    for (i in 1:length(mu)) {
+      # for (j in 1:2) {
+      Pa[i,1] <-  scenario_2_pa(c, mu[i], sd = 0.8, m1, n, type = "theory")
+      Pa[i,2] <-  scenario_2_pa(c, mu[i], sd = 0.8, m2, n, type = "theory")
+      # }
+    }
+    Prob <- data.frame(mu, Pa)
+    # colnames(Prob ) <- c("mu", f_spr(k,M))
+    colnames(Prob ) <- c("mu", f_spr(1,m1), f_spr(2,m2))
+    melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "P_a")
+    plot_sam <- ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = P_a, group = Sampling_scheme, colour = Sampling_scheme)) +
+      # ggplot2::ggtitle("OC curve based on Lognormal distribution") +
+      ggplot2::theme_classic() + ggplot2::xlab(expression("log mean concentration  (" ~ mu[0]*~")")) + ggplot2::ylab(expression(P[a])) + ggthemes::scale_colour_colorblind() +
+      ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5), legend.position = c(0.85, 0.75), axis.line.x.top = ggplot2::element_line(color = "red"),
+                     axis.ticks.x.top = ggplot2::element_line(color = "red"), axis.text.x.top = ggplot2::element_text(color = "red"), axis.title.x.top = ggplot2::element_text(color = "red")) +
+      ggplot2::scale_x_continuous(sec.axis = ggplot2::sec_axis(~., name = "expected cell counts (cfu/g)", breaks = seq(min(mu),max(mu),1),
+                                                               labels = c(sprintf("%f", 10^(seq(min(mu),max(mu),1) + (sd^2/2) * log(10, exp(1)))))))
+    # plot_sam
+    # message("Please note that you can get more accurate results if you use a large number of simulations")
+    return(plot_sam)
+    # print("Not yet established, please use simulation-based results")
   } else if (type == "simulation") {
     if (is.na(n_sim) == TRUE) {
       stop("please set the number of simualtions")
@@ -91,3 +99,4 @@ scenario_2_OC <- function(c, mulow, muhigh, sd = 0.8, m1, m2, n, type, n_sim = N
     print("please include what type (theory/ simulation) you would like to consider")
   }
 }
+

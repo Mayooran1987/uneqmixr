@@ -37,5 +37,5 @@ m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 K <- 0.05
 scenario_3_pd(mu, sd = 0.8, m, K, type = "theory")
-scenario_3_pd(mu, sd = 0.8, m, K, type = "simulation", n_sim = 2000000)
+scenario_3_pd(mu, sd = 0.8, m, K, type = "simulation", n_sim = 1000000)
 }

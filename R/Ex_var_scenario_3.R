@@ -1,5 +1,5 @@
 ##' \code{\link{Ex_var_scenario_3}} provides the expected value or variance of the number of microorganisms in the aggregate sample under scenario 3 of modelling the quantity of material sampled in the risk assessment study.
-##' @title Expected value or variance of microorganism in the aggregate sample under scenario 3.
+##' @title Expected value or variance estimation of microorganism in the aggregate sample under scenario 3.
 ##' @param mu the the mean concentration (\eqn{\mu}).
 ##' @param sd standard deviation on the log10 scale (default value 0.8).
 ##' @param m the vector of incremental samples (with equal/unequal weights).

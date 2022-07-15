@@ -2,7 +2,7 @@
 % Please edit documentation in R/Ex_var_scenario_3.R
 \name{Ex_var_scenario_3}
 \alias{Ex_var_scenario_3}
-\title{Expected value or variance of microorganism in the aggregate sample under scenario 3.}
+\title{Expected value or variance estimation of microorganism in the aggregate sample under scenario 3.}
 \usage{
 Ex_var_scenario_3 (mu, sd, m, K, type, measure, n_sim)
 }

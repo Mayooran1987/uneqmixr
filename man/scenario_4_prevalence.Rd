@@ -36,4 +36,5 @@ m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 l <- 5000
 scenario_4_prevalence(mu, sd, m, l, type = "theory")
+scenario_4_prevalence(mu, sd, m, l, type = "simulation", n_sim = 500000)
 }

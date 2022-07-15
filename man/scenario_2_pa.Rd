@@ -33,12 +33,12 @@ Under this scenario (a lot with heterogeneous, high-level contamination), we emp
 }
 \examples{
 c <- 0
-mu <- -3
+mu <- -6
 sd <- 0.8
 m <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
 n <- 10
-scenario_2_pa(c, mu, sd = 0.8, m, n, type = "theory")
-scenario_2_pa(c, mu, sd = 0.8, m, n, type = "simulation", n_sim = 200000)
+scenario_2_pa(c, mu, sd, m, n, type = "theory")
+scenario_2_pa(c, mu, sd, m, n, type = "simulation", n_sim = 200000)
 }
