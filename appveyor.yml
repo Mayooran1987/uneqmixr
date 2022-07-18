@@ -1,52 +1,18 @@
-# DO NOT CHANGE the "init" and "install" sections below
-
-# Download script file from GitHub
-init:
-  ps: |
-        $ErrorActionPreference = "Stop"
-        Invoke-WebRequest http://raw.github.com/krlmlr/r-appveyor/master/scripts/appveyor-tool.ps1 -OutFile "..\appveyor-tool.ps1"
-        Import-Module '..\appveyor-tool.ps1'
-
-install:
-  ps: Bootstrap
-
-cache:
-  - C:\RLibrary
-
-environment:
-  NOT_CRAN: true
-  # env vars that may need to be set, at least temporarily, from time to time
-  # see https://github.com/krlmlr/r-appveyor#readme for details
-  # USE_RTOOLS: true
-  # R_REMOTES_STANDALONE: true
-
-# Adapt as necessary starting from here
-
+before_build:
+ - nuget restore
 build_script:
-  - travis-tool.sh install_deps
-
+ - msbuild /verbosity:quiet "uneqmixr.sln"
 test_script:
-  - travis-tool.sh run_tests
-
-on_failure:
-  - 7z a failure.zip *.Rcheck\*
-  - appveyor PushArtifact failure.zip
-
-artifacts:
-  - path: '*.Rcheck\**\*.log'
-    name: Logs
-
-  - path: '*.Rcheck\**\*.out'
-    name: Logs
-
-  - path: '*.Rcheck\**\*.fail'
-    name: Logs
-
-  - path: '*.Rcheck\**\*.Rout'
-    name: Logs
-
-  - path: '\*_*.tar.gz'
-    name: Bits
-
-  - path: '\*_*.zip'
-    name: Bits
+ - .\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:administrator -target:"packages\xunit.runner.console.2.2.0\tools\xunit.console.x86.exe" -targetargs:"Tests\bin\Debug\tests.dll -noshadow" -output:".\coverage.xml" -filter:"+[SystemUnderTest*]* -[Tests*]*"
+# use codecov bash script. Requires powershell and bash to be installed, which both are on the AppVeyor machine image
+after_test:
+  - ps: |
+      Invoke-WebRequest -Uri 'https://codecov.io/bash' -OutFile codecov.sh
+      $env:APPVEYOR="true"
+      $env:CI="true"
+      bash codecov.sh -f "coverage.xml"
+# another option is to use the codecov python package. Requires python to be available, which it is on AppVeyor machine image, and then we have to install the codecov package
+#after_test:
+#- "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+#- pip install codecov
+#- codecov -f "coverage.xml"
