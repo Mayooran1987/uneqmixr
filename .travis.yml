@@ -2,3 +2,16 @@
 
 language: R
 
+sudo: required
+
+env: _R_CHECK_CRAN_INCOMING_=FALSE
+
+r_packages:
+  - covr
+  - devtools
+
+r_github_packages:
+  - codecov/uneqmixr
+
+after_success:
+  - Rscript -e 'library(covr);codecov()'
