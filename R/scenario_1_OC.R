@@ -21,14 +21,14 @@
 ##' mulow <- -6
 ##' muhigh <- 0
 ##' sd <- 0.8
-##' m1 <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
-##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
-##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
-##' m2 <- c(10,15,15,20,20,15,15,15,15,20,10,10,20,20,10,20,10,15,15,20,20,15,
-##' 15,15,15,20,10,10,20,20,10,20)
+##' m1 <- c(10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
+##' 10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
+##' 10,10,10,10,10,10,10,10,10,10)
+##' m2 <- c(15,5,5,5,10,5,10,5,15,10,5,10,5,25,10,5,10,5,5,10,5,15,10,
+##' 5,5,20,5,10,5,10,20,5,10,30,5,20,5,10,5,10,20,15,10,15,10,
+##' 10,5,10,15,5)
 ##' n <- 10
 ##' scenario_1_OC(c, mulow, muhigh, sd = 0.8, m1, m2, n, type = "theory")
-##' scenario_1_OC(c, mulow, muhigh, sd = 0.8, m1, m2, n, type = "simulation", n_sim = 1000000)
 ##' @usage  scenario_1_OC(c, mulow, muhigh, sd, m1, m2, n, type, n_sim)
 ##' @export
 scenario_1_OC <- function(c, mulow, muhigh, sd = 0.8, m1, m2, n, type, n_sim = NA){
@@ -41,13 +41,18 @@ scenario_1_OC <- function(c, mulow, muhigh, sd = 0.8, m1, m2, n, type, n_sim = N
   # f_spr <- function(k,M) {
   #   sprintf("Scheme(k=%.0f, M=%.0f)", k, M)
   # }
-  f_spr <- function(number,m) {
+  # m1 <- c(10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
+  #         10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10)
+  #
+  # m2 <- c(15,5,5,5,10,5,10,5,15,10,5,10,5,25,10,5,10,5,5,10,5,15,
+  #         10,5,5,20,5,10,5,10,20,5,10,30,5,20,5,10,5,10,20,15,10,15,10,10,5,10,15,5)
+  f_spr <- function(m) {
     M <- sum(m)
     k <- length(m)
     if (var(m) == 0) {
-      sprintf("Scheme %.0f(equal, k=%.0f, M=%.0f)", number,k, M)
+      sprintf("Scheme (equal, k=%.0f, M=%.0f)",k, M)
     } else{
-      sprintf("Scheme %.0f(un-equal, k=%.0f, M=%.0f)", number,k, M)
+      sprintf("Scheme (un-equal, k=%.0f, M=%.0f)",k, M)
     }
   }
   mu <- seq(mulow, muhigh, 0.01)
@@ -78,7 +83,7 @@ scenario_1_OC <- function(c, mulow, muhigh, sd = 0.8, m1, m2, n, type, n_sim = N
   }
   Prob <- data.frame(mu, Pa)
   # colnames(Prob ) <- c("mu", f_spr(k,M))
-  colnames(Prob ) <- c("mu", f_spr(1,m1), f_spr(2,m2))
+  colnames(Prob ) <- c("mu", f_spr(m1), f_spr(m2))
   melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "P_a")
   plot_sam <- ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = mu, y = P_a, group = Sampling_scheme, colour = Sampling_scheme)) +
     # ggplot2::ggtitle("OC curve based on Lognormal distribution") +

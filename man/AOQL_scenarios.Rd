@@ -4,7 +4,7 @@
 \alias{AOQL_scenarios}
 \title{Construction of  AOQ curve and calculate AOQL value based on average microbial counts}
 \usage{
-AOQL_scenarios(c,llim, sd, m, scenario, n, type, K, n_sim)
+AOQL_scenarios(c,llim, sd, m1, m2, scenario, n, type, K, n_sim)
 }
 \arguments{
 \item{c}{acceptance number}
@@ -13,7 +13,9 @@ AOQL_scenarios(c,llim, sd, m, scenario, n, type, K, n_sim)
 
 \item{sd}{standard deviation on the log10 scale (default value 0.8).}
 
-\item{m}{the vector of incremental samples (with equal/unequal weights).}
+\item{m1}{the vector of the first set of incremental samples (with equal/unequal weights).}
+
+\item{m2}{the vector of the second set of incremental samples (with equal/unequal weights).}
 
 \item{scenario}{what scenario we have considered such as  \code{"1"}or \code{"2"}or \code{"3"}}
 
@@ -39,15 +41,14 @@ Since \eqn{p_a} is the probability of acceptance, \eqn{\lambda} is the arithmeti
 c <- 0
 llim <- 0.02
 sd <- 0.8
-m1 <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
-5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
-5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
-m2 <- c(10,15,15,20,20,15,15,15,15,20,10,10,20,20,10,20,10,15,15,20,20,15,
-15,15,15,20,10,10,20,20,10,20)
-scenario <- "1"
+m1 <- c(10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
+10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
+10,10,10,10,10,10,10,10,10,10)
+m2 <- c(15,5,5,5,10,5,10,5,15,10,5,10,5,25,10,5,10,5,5,10,5,15,10,
+5,5,20,5,10,5,10,20,5,10,30,5,20,5,10,5,10,20,15,10,15,10,
+10,5,10,15,5)
 n <- 10
-AOQL_scenarios(c,llim, sd, m = m1,  scenario, n, type = "theory")
-AOQL_scenarios(c,llim, sd, m = m2,  scenario, n, type = "theory")
+AOQL_scenarios(c,llim, sd, m1, m2, scenario = "1", n, type = "theory")
 }
 \seealso{
 \link{scenario_1_pa}, \link{scenario_2_pa}, \link{scenario_3_pa}

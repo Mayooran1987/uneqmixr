@@ -13,12 +13,13 @@
 ##' @examples
 ##' mulow <- -6
 ##' muhigh <- 1
-##' m1 <- c(5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
-##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,
-##' 5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5)
-##' m2 <- c(10,15,15,20,20,15,15,15,15,20,10,10,20,20,10,20,10,15,15,20,20,15,
-##' 15,15,15,20,10,10,20,20,10,20)
-##' l <- 20000
+##' m1 <- c(10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
+##' 10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,
+##' 10,10,10,10,10,10,10,10,10,10)
+##' m2 <- c(15,5,5,5,10,5,10,5,15,10,5,10,5,25,10,5,10,5,5,10,5,15,10,
+##' 5,5,20,5,10,5,10,20,5,10,30,5,20,5,10,5,10,20,15,10,15,10,
+##' 10,5,10,15,5)
+##' l <- 2000
 ##' compare_prevalence_scenario_5(mulow, muhigh, sd = 0.8, m1, m2, l,
 ##' type = "theory")
 ##' @usage  compare_prevalence_scenario_5(mulow, muhigh, sd, m1, m2, l, type, n_sim)
@@ -26,13 +27,13 @@
 compare_prevalence_scenario_5 <- function(mulow, muhigh, sd = 0.8, m1, m2, l, type, n_sim = NA){
   Sampling_scheme <- NULL
   Prev <- NULL
-  f_spr <- function(number,m) {
+  f_spr <- function(m) {
     M <- sum(m)
     k <- length(m)
     if (var(m) == 0) {
-      sprintf("Scheme %.0f(equal, k=%.0f, M=%.0f)", number,k, M)
+      sprintf("Scheme (equal, k=%.0f, M=%.0f)",k, M)
     } else{
-      sprintf("Scheme %.0f(un-equal, k=%.0f, M=%.0f)", number,k, M)
+      sprintf("Scheme (un-equal, k=%.0f, M=%.0f)",k, M)
     }
   }
   mu <- seq(mulow, muhigh, 0.001)
@@ -47,7 +48,7 @@ compare_prevalence_scenario_5 <- function(mulow, muhigh, sd = 0.8, m1, m2, l, ty
       # }
     }
     Prob <- data.frame(mu, Prev)
-    colnames(Prob ) <- c("mu", f_spr(1,m1),f_spr(2,m2))
+    colnames(Prob ) <- c("mu", f_spr(m1),f_spr(m2))
     melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "Prev")
     plot_sam <- ggplot2::ggplot(melten.Prob,ggplot2::aes(x = mu, y = Prev, group = Sampling_scheme, colour = Sampling_scheme)) +
       ggplot2::geom_line() +
@@ -71,7 +72,7 @@ compare_prevalence_scenario_5 <- function(mulow, muhigh, sd = 0.8, m1, m2, l, ty
         # }
       }
       Prob <- data.frame(mu, Prev)
-      colnames(Prob ) <- c("mu", f_spr(1,m1),f_spr(2,m2))
+      colnames(Prob ) <- c("mu", f_spr(m1),f_spr(m2))
       melten.Prob <- reshape2::melt(Prob, id = "mu", variable.name = "Sampling_scheme", value.name = "Prev")
       plot_sam <- ggplot2::ggplot(melten.Prob,ggplot2::aes(x = mu, y = Prev, group = Sampling_scheme, colour = Sampling_scheme)) +
         ggplot2::geom_line() +
