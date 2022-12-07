@@ -18,8 +18,9 @@ The 'uneqmixr' package aims to develop for estimate probabilities associated wit
 Any R user can install the development version of uneqmixr package from [GitHub](https://github.com/) with just two lines of code:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("Mayooran1987/uneqmixr")
+# Install the development version from GitHub
+# install.packages("pak")
+pak::pak("Mayooran1987/uneqmixr")
 ```
 
 ### User manual
