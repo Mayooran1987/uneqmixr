@@ -19,8 +19,8 @@ Any R user can install the development version of uneqmixr package from [GitHub]
 
 ``` r
 # Install the development version from GitHub
-# install.packages("pak")
-pak::pak("Mayooran1987/uneqmixr")
+# install.packages("devtools")
+devtools::install_github("Mayooran1987/uneqmixr")
 ```
 
 ### User manual
