@@ -18,31 +18,31 @@
 ##' scenario_1_pd(mu, sd = 0.8, m, type = "simulation", n_sim = 1000000)
 ##' @usage  scenario_1_pd(mu, sd, m, type, n_sim)
 ##' @export
-scenario_1_pd <- function(mu, sd = 0.8, m, type, n_sim = NA){
+scenario_1_pd <- function(mu, sd = 0.8, m, type, n_sim = NA) {
   if (type == "theory") {
-    lambda_0 <- 10^(mu + (sd^2/2) * log(10, exp(1)))
+    lambda_0 <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
     M <- sum(m)
     m_0 <- min(m)
-    pd <- 1 - exp(lambda_0*(-M/m_0))
+    pd <- 1 - exp(lambda_0 * (-M / m_0))
     return(pd)
   } else if (type == "simulation") {
     if (is.na(n_sim) == TRUE) {
       stop("please set the number of simualtions")
     } else {
       k <- length(m)
-      w <- m/sum(m)
-      lambda_0 <- 10^(mu + (sd^2/2) * log(10, exp(1)))
+      w <- m / sum(m)
+      lambda_0 <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
       sim1 <- matrix(NA, nrow = n_sim, ncol = k)
       for (j in 1:k) {
-        sim1[,j] <-   stats::rpois( n_sim, lambda_0*m[j]/min(m))*w[j]
+        sim1[, j] <- stats::rpois(n_sim, lambda_0 * m[j] / min(m)) * w[j]
       }
       sim <- apply(sim1, 1, sum)
-      pd <- length(which(sim > 0))/n_sim
+      pd <- length(which(sim > 0)) / n_sim
       # warning("Please note that you can get more accurate results if you use a large number of simulations")
       return(pd)
     }
-  }else {
+  } else {
     print("please include what type (theory/ simulation) you would like to consider")
   }
 }
-
+prod

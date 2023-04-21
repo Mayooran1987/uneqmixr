@@ -20,13 +20,13 @@
 ##' Ex_var_scenario_1(mu, sd = 0.8, m, type = "simulation",  measure = "variance", n_sim = 2000000)
 ##' @usage  Ex_var_scenario_1(mu, sd = 0.8, m, type, measure, n_sim)
 ##' @export
-Ex_var_scenario_1 <- function(mu, sd = 0.8, m, type, measure, n_sim = NA){
+Ex_var_scenario_1 <- function(mu, sd = 0.8, m, type, measure, n_sim = NA) {
   k <- length(m)
-  w <- m/sum(m)
-  lambda_0 <- 10^(mu + (sd^2/2) * log(10, exp(1)))
+  w <- m / sum(m)
+  lambda_0 <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
   if (measure == "expectation") {
     if (type == "theory") {
-      expect <- lambda_0*sum(m*m/(min(m)*sum(m)))
+      expect <- lambda_0 * sum(m * m / (min(m) * sum(m)))
       return(expect)
     } else if (type == "simulation") {
       if (is.na(n_sim) == TRUE) {
@@ -34,12 +34,12 @@ Ex_var_scenario_1 <- function(mu, sd = 0.8, m, type, measure, n_sim = NA){
       } else {
         sim1 <- matrix(NA, nrow = n_sim, ncol = k)
         for (j in 1:k) {
-          sim1[,j] <- stats::rpois(n_sim, lambda_0*m[j]/min(m))
+          sim1[, j] <- stats::rpois(n_sim, lambda_0 * m[j] / min(m))
         }
         sim3 <- apply(sim1, 2, mean)
         sim4 <- matrix(NA, nrow = 1, ncol = k)
         for (j in 1:k) {
-          sim4[,j] <- sim3[j]*w[j]
+          sim4[, j] <- sim3[j] * w[j]
         }
         sim <- apply(sim4, 1, sum)
         result <- sum(sim)
@@ -48,35 +48,32 @@ Ex_var_scenario_1 <- function(mu, sd = 0.8, m, type, measure, n_sim = NA){
     } else {
       print("please include what type (theory/ simulation) you would like to consider")
     }
-    } else if (measure == "variance") {
-
-      if (type == "theory") {
-        Vari <- lambda_0*sum(m*m*m/(min(m)*sum(m)*sum(m)))
-        return(Vari)
-      } else if (type == "simulation") {
-        if (is.na(n_sim) == TRUE) {
-          stop("please set the number of simualtions")
-        } else {
-          sim1 <- matrix(NA, nrow = n_sim, ncol = k)
-          for (j in 1:k) {
-            sim1[,j] <- stats::rpois(n_sim, lambda_0*m[j]/min(m))
-          }
-          sim3 <- apply(sim1, 2, var)
-          sim4 <- matrix(NA, nrow = 1, ncol = k)
-          for (j in 1:k) {
-            sim4[,j] <- sim3[j]*w[j]*w[j]
-          }
-          sim <- apply(sim4, 1, sum)
-          result <- sim
-          return(result)
+  } else if (measure == "variance") {
+    if (type == "theory") {
+      Vari <- lambda_0 * sum(m * m * m / (min(m) * sum(m) * sum(m)))
+      return(Vari)
+    } else if (type == "simulation") {
+      if (is.na(n_sim) == TRUE) {
+        stop("please set the number of simualtions")
+      } else {
+        sim1 <- matrix(NA, nrow = n_sim, ncol = k)
+        for (j in 1:k) {
+          sim1[, j] <- stats::rpois(n_sim, lambda_0 * m[j] / min(m))
         }
-      } else {
-        print("please include what type (theory/ simulation) you would like to consider")
+        sim3 <- apply(sim1, 2, var)
+        sim4 <- matrix(NA, nrow = 1, ncol = k)
+        for (j in 1:k) {
+          sim4[, j] <- sim3[j] * w[j] * w[j]
+        }
+        sim <- apply(sim4, 1, sum)
+        result <- sim
+        return(result)
       }
-      } else {
+    } else {
+      print("please include what type (theory/ simulation) you would like to consider")
+    }
+  } else {
     print("Please choose measure as expectation or variance")
   }
   return(result)
 }
-
-

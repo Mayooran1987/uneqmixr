@@ -20,37 +20,36 @@
 ##' scenario_3_pd(mu, sd = 0.8, m, K, type = "simulation", n_sim = 1000000)
 ##' @usage  scenario_3_pd(mu, sd, m, K, type, n_sim)
 ##' @export
-scenario_3_pd <- function(mu, sd = 0.8, m, K = 0.25, type, n_sim = NA){
-    if (type == "theory") {
-      lambda_0 <- 10^(mu + (sd^2/2) * log(10, exp(1)))
-      k <- length(m)
-      sim1 <- matrix(NA, nrow = k, ncol = 1)
-      for (i in 1:k) {
-        # sim1[i,1] <-   ((m[i]*lambda_0)/(min(m) + m[i]*lambda_0))^K
-        # sim1[i,1] <-   (K*min(m)/(K*min(m) + m[i]*lambda_0))^K
-        sim1[i,1] <-   (min(m)/(min(m) + m[i]*lambda_0))^K
-      }
-      sim <- apply(sim1, 2, prod)
-      pd <- 1 - sim
-      return(pd)
-    } else if (type == "simulation") {
-      if (is.na(n_sim) == TRUE) {
-        stop("please set the number of simualtions")
-      } else {
-        k <- length(m)
-        lambda_0 <- 10^(mu + (sd^2/2) * log(10, exp(1)))
-        w <- m/sum(m)
-        sim1 <- matrix(NA, nrow = n_sim, ncol = k)
-        for (j in 1:k) {
-          # sim1[,j] <-  extraDistr::rgpois(n_sim, shape = K, rate = lambda)*w[j]
-          sim1[,j] <-  extraDistr::rgpois(n_sim, shape = K, rate =  1/(m[j]*lambda_0/min(m)))*w[j]
-        }
-        sim <- apply(sim1, 1, sum)
-        pd <- length(which(sim > 0))/n_sim
-        return(pd)
-      }
-    }else {
-      print("please include what type (theory/ simulation) you would like to consider")
+scenario_3_pd <- function(mu, sd = 0.8, m, K = 0.25, type, n_sim = NA) {
+  if (type == "theory") {
+    lambda_0 <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
+    k <- length(m)
+    sim1 <- matrix(NA, nrow = k, ncol = 1)
+    for (i in 1:k) {
+      # sim1[i,1] <-   ((m[i]*lambda_0)/(min(m) + m[i]*lambda_0))^K
+      # sim1[i,1] <-   (K*min(m)/(K*min(m) + m[i]*lambda_0))^K
+      sim1[i, 1] <- (min(m) / (min(m) + m[i] * lambda_0))^K
     }
+    sim <- apply(sim1, 2, prod)
+    pd <- 1 - sim
+    return(pd)
+  } else if (type == "simulation") {
+    if (is.na(n_sim) == TRUE) {
+      stop("please set the number of simualtions")
+    } else {
+      k <- length(m)
+      lambda_0 <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
+      w <- m / sum(m)
+      sim1 <- matrix(NA, nrow = n_sim, ncol = k)
+      for (j in 1:k) {
+        # sim1[,j] <-  extraDistr::rgpois(n_sim, shape = K, rate = lambda)*w[j]
+        sim1[, j] <- extraDistr::rgpois(n_sim, shape = K, rate = 1 / (m[j] * lambda_0 / min(m))) * w[j]
+      }
+      sim <- apply(sim1, 1, sum)
+      pd <- length(which(sim > 0)) / n_sim
+      return(pd)
+    }
+  } else {
+    print("please include what type (theory/ simulation) you would like to consider")
   }
-
+}

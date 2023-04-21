@@ -2,7 +2,7 @@
 % Please edit documentation in R/scenario_1_pd_curve.R
 \name{scenario_1_pd_curve}
 \alias{scenario_1_pd_curve}
-\title{Construction of  Operating Characteristic (OC) curve under lot with homogeneous contaminations based on simulations results.}
+\title{Construction of probability of detection curves under lot with homogeneous contaminations based on simulations results.}
 \usage{
 scenario_1_pd_curve(mulow, muhigh, sd, m1, m2, type, n_sim)
 }

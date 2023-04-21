@@ -5,12 +5,12 @@
 #'
 #' @details
 #'
-#'This package aims to develop probability estimations and graphical displays in modelling the quantity of material sampled in the risk assessment.
-#'This study mainly focuses on the risk assessment when aggregating unequal incremental samples in the production process.
-#'It mainly focuses on the risk assessment based on compound Poisson mixture distributions to model in five different scenarios.
+#' This package aims to develop probability estimations and graphical displays in modelling the quantity of material sampled in the risk assessment.
+#' This study mainly focuses on the risk assessment when aggregating unequal incremental samples in the production process.
+#' It mainly focuses on the risk assessment based on compound Poisson mixture distributions to model in five different scenarios.
 #'
-#'The following scenarios are considered for this study:
-#'\enumerate{
+#' The following scenarios are considered for this study:
+#' \enumerate{
 #' \item Scenario 1— lots with homogeneous contamination;
 #' \item Scenario 2— lots with heterogeneous, high-level contamination;
 #' \item Scenario 3— lots with heterogeneous, low-level contamination;

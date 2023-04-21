@@ -18,15 +18,15 @@
 ##' scenario_5_prevalence(mu, sd, m, l, type = "theory")
 ##' @usage  scenario_5_prevalence(mu, sd, m, l, type, n_sim)
 ##' @export
-scenario_5_prevalence <- function(mu, sd =0.8, m, l, type, n_sim = NA ){
+scenario_5_prevalence <- function(mu, sd = 0.8, m, l, type, n_sim = NA) {
   if (type == "theory") {
     # print("Not yet established, please use simulation-based results")
     mu_0 <- stats::rnorm(l, mu, sd)
     sim2 <- matrix(NA, nrow = 1, ncol = l)
     for (j in 1:l) {
-      sim2[,j] <-   scenario_2_pd(mu_0[j], sd, m, type = "theory")
+      sim2[, j] <- scenario_2_pd(mu_0[j], sd, m, type = "theory")
     }
-    prev <- sum(sim2)/l
+    prev <- sum(sim2) / l
     return(prev)
   } else if (type == "simulation") {
     if (is.na(n_sim) == TRUE) {
@@ -35,13 +35,12 @@ scenario_5_prevalence <- function(mu, sd =0.8, m, l, type, n_sim = NA ){
       mu_0 <- stats::rnorm(l, mu, sd)
       sim2 <- matrix(NA, nrow = 1, ncol = l)
       for (j in 1:l) {
-        sim2[,j] <-   scenario_2_pd(mu_0[j], sd, m, type = "simulation", n_sim)
+        sim2[, j] <- scenario_2_pd(mu_0[j], sd, m, type = "simulation", n_sim)
       }
-      prev <- sum(sim2)/l
+      prev <- sum(sim2) / l
       return(prev)
     }
-  }else {
+  } else {
     print("please include what type (theory/ simulation) you would like to consider")
   }
 }
-

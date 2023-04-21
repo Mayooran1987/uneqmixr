@@ -22,21 +22,20 @@
 ##' scenario_1_pa(c, mu, sd = 0.8, m, n, type = "simulation", n_sim = 1000000)
 ##' @usage  scenario_1_pa(c, mu, sd, m, n, type, n_sim)
 ##' @export
-scenario_1_pa <- function(c, mu, sd = 0.8, m, n, type, n_sim = NA){
+scenario_1_pa <- function(c, mu, sd = 0.8, m, n, type, n_sim = NA) {
   if (type == "theory") {
     pd <- scenario_1_pd(mu, sd, m, type, n_sim)
     pa <- stats::pbinom(c, n, pd)
     return(pa)
-    } else if (type == "simulation") {
-      if (is.na(n_sim) == TRUE) {
-        stop("please set the number of simualtions")
-      } else {
-        pd <- scenario_1_pd(mu, sd, m, type, n_sim)
-        pa <- stats::pbinom(c, n, pd)
-        return(pa)
-      }
-      } else {
-        print("please include what type (theory/ simulation) you would like to consider")
-      }
+  } else if (type == "simulation") {
+    if (is.na(n_sim) == TRUE) {
+      stop("please set the number of simualtions")
+    } else {
+      pd <- scenario_1_pd(mu, sd, m, type, n_sim)
+      pa <- stats::pbinom(c, n, pd)
+      return(pa)
+    }
+  } else {
+    print("please include what type (theory/ simulation) you would like to consider")
   }
-
+}

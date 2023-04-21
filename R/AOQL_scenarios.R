@@ -29,7 +29,7 @@
 ##' AOQL_scenarios(c,llim, sd, m1, m2, scenario = "1", n, type = "theory")
 ##' @usage  AOQL_scenarios(c,llim, sd, m1, m2, scenario, n, type, K, n_sim)
 ##' @export
-AOQL_scenarios <- function(c,llim, sd, m1, m2, scenario, n, type, K= NA, n_sim = NA){
+AOQL_scenarios <- function(c, llim, sd, m1, m2, scenario, n, type, K = NA, n_sim = NA) {
   Sampling_scheme <- NULL
   # f_spr <- function(k,M) {
   #   sprintf("Scheme(k=%.0f, M=%.0f)", k, M)
@@ -39,24 +39,24 @@ AOQL_scenarios <- function(c,llim, sd, m1, m2, scenario, n, type, K= NA, n_sim =
     k <- length(m)
     if (var(m) == 0) {
       sprintf("Scheme (equal, k=%.0f, M=%.0f)", k, M)
-    } else{
-      sprintf("Scheme (un-equal, k=%.0f, M=%.0f)",k, M)
+    } else {
+      sprintf("Scheme (un-equal, k=%.0f, M=%.0f)", k, M)
     }
   }
   lambda <- seq(0, llim, by = 1e-04)
-  mu <- log(lambda, 10) - (sd^2/2)*log(10, exp(1))
+  mu <- log(lambda, 10) - (sd^2 / 2) * log(10, exp(1))
   if (type == "theory") {
     if (scenario == "1") {
       AOQ <- matrix(NA, nrow = length(mu), ncol = 2)
       for (i in 1:length(mu)) {
-        AOQ[i,1] <-  lambda[i]*scenario_1_pa(c, mu[i], sd, m1, n, type = "theory")
-        AOQ[i,2] <-  lambda[i]*scenario_1_pa(c, mu[i], sd, m2, n, type = "theory")
+        AOQ[i, 1] <- lambda[i] * scenario_1_pa(c, mu[i], sd, m1, n, type = "theory")
+        AOQ[i, 2] <- lambda[i] * scenario_1_pa(c, mu[i], sd, m2, n, type = "theory")
       }
     } else if (scenario == "2") {
       AOQ <- matrix(NA, nrow = length(mu), ncol = 2)
       for (i in 1:length(mu)) {
-        AOQ[i,1] <-  lambda[i]*scenario_2_pa(c, mu[i], sd, m1, n, type = "theory")
-        AOQ[i,2] <-  lambda[i]*scenario_2_pa(c, mu[i], sd, m2, n, type = "theory")
+        AOQ[i, 1] <- lambda[i] * scenario_2_pa(c, mu[i], sd, m1, n, type = "theory")
+        AOQ[i, 2] <- lambda[i] * scenario_2_pa(c, mu[i], sd, m2, n, type = "theory")
       }
     } else if (scenario == "3") {
       if (is.na(K) == TRUE) {
@@ -64,8 +64,8 @@ AOQL_scenarios <- function(c,llim, sd, m1, m2, scenario, n, type, K= NA, n_sim =
       } else {
         AOQ <- matrix(NA, nrow = length(mu), ncol = 2)
         for (i in 1:length(mu)) {
-          AOQ[i,1] <-  lambda[i]*scenario_3_pa(c, mu[i], sd, m1, K, n, type = "theory")
-          AOQ[i,2] <-  lambda[i]*scenario_3_pa(c, mu[i], sd, m2, K, n, type = "theory")
+          AOQ[i, 1] <- lambda[i] * scenario_3_pa(c, mu[i], sd, m1, K, n, type = "theory")
+          AOQ[i, 2] <- lambda[i] * scenario_3_pa(c, mu[i], sd, m2, K, n, type = "theory")
         }
       }
     } else {
@@ -78,14 +78,14 @@ AOQL_scenarios <- function(c,llim, sd, m1, m2, scenario, n, type, K= NA, n_sim =
       if (scenario == "1") {
         AOQ <- matrix(NA, nrow = length(mu), ncol = 2)
         for (i in 1:length(mu)) {
-          AOQ[i,1] <-  lambda[i]*scenario_1_pa(c, mu[i], sd, m1, n, type = "simulation" , n_sim)
-          AOQ[i,2] <-  lambda[i]*scenario_1_pa(c, mu[i], sd, m2, n, type = "simulation" , n_sim)
+          AOQ[i, 1] <- lambda[i] * scenario_1_pa(c, mu[i], sd, m1, n, type = "simulation", n_sim)
+          AOQ[i, 2] <- lambda[i] * scenario_1_pa(c, mu[i], sd, m2, n, type = "simulation", n_sim)
         }
       } else if (scenario == "2") {
         AOQ <- matrix(NA, nrow = length(mu), ncol = 2)
         for (i in 1:length(mu)) {
-          AOQ[i,1] <-  lambda[i]*scenario_2_pa(c, mu[i], sd, m1, n, type = "simulation", n_sim)
-          AOQ[i,2] <-  lambda[i]*scenario_2_pa(c, mu[i], sd, m2, n, type = "simulation", n_sim)
+          AOQ[i, 1] <- lambda[i] * scenario_2_pa(c, mu[i], sd, m1, n, type = "simulation", n_sim)
+          AOQ[i, 2] <- lambda[i] * scenario_2_pa(c, mu[i], sd, m2, n, type = "simulation", n_sim)
         }
       } else if (scenario == "3") {
         if (is.na(K) == TRUE) {
@@ -93,8 +93,8 @@ AOQL_scenarios <- function(c,llim, sd, m1, m2, scenario, n, type, K= NA, n_sim =
         } else {
           AOQ <- matrix(NA, nrow = length(mu), ncol = 2)
           for (i in 1:length(mu)) {
-            AOQ[i,1] <-  lambda[i]*scenario_3_pa(c, mu[i], sd, m1, K, n, type = "simulation" , n_sim)
-            AOQ[i,2] <-  lambda[i]*scenario_3_pa(c, mu[i], sd, m2, K, n, type = "simulation" , n_sim)
+            AOQ[i, 1] <- lambda[i] * scenario_3_pa(c, mu[i], sd, m1, K, n, type = "simulation", n_sim)
+            AOQ[i, 2] <- lambda[i] * scenario_3_pa(c, mu[i], sd, m2, K, n, type = "simulation", n_sim)
           }
         }
       } else {
@@ -102,19 +102,23 @@ AOQL_scenarios <- function(c,llim, sd, m1, m2, scenario, n, type, K= NA, n_sim =
       }
     }
   }
-  Prob <- data.frame(lambda, AOQ )
+  Prob <- data.frame(lambda, AOQ)
   # colnames(Prob ) <- c("lambda", f_spr(k,M))
-  colnames(Prob ) <- c("lambda", f_spr(m1), f_spr(m2))
+  colnames(Prob) <- c("lambda", f_spr(m1), f_spr(m2))
   melten.Prob <- reshape2::melt(Prob, id = "lambda", variable.name = "Sampling_scheme", value.name = "AOQ")
-  plot_sam <- ggplot2::ggplot(melten.Prob) + ggplot2::geom_line(ggplot2::aes(x = lambda, y = AOQ, group = Sampling_scheme, colour = Sampling_scheme)) +
-    ggplot2::theme_classic() + ggplot2::ylab(expression(AOQ)) + ggthemes::scale_colour_colorblind() +
-    ggplot2::xlab(expression("arithmetic mean cell count (" ~ lambda[0]*~")")) +
+  plot_sam <- ggplot2::ggplot(melten.Prob) +
+    ggplot2::geom_line(ggplot2::aes(x = lambda, y = AOQ, group = Sampling_scheme, colour = Sampling_scheme)) +
+    ggplot2::theme_classic() +
+    ggplot2::ylab(expression(AOQ)) +
+    ggthemes::scale_colour_colorblind() +
+    ggplot2::xlab(expression("arithmetic mean cell count (" ~ lambda[0] * ~")")) +
     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 10), legend.position = c(0.75, 0.75)) +
-    ggplot2::geom_hline(yintercept = c(AOQ[,1][which.max(AOQ[,1])],AOQ[,2][which.max(AOQ[,2])]),linetype = "dashed") +
-    ggplot2::annotate("text", x = c(4*lambda[which.max(AOQ[,1])],4*lambda[which.max(AOQ[,2])]),
-                      y = c(AOQ[,1][which.max(AOQ[,1])],AOQ[,2][which.max(AOQ[,2])]), label = sprintf("\n AOQL = %0.4f", round(c(AOQ[,1][which.max(AOQ[,1])],AOQ[,2][which.max(AOQ[,2])]), digits = 4)), size = 3)
+    ggplot2::geom_hline(yintercept = c(AOQ[, 1][which.max(AOQ[, 1])], AOQ[, 2][which.max(AOQ[, 2])]), linetype = "dashed") +
+    ggplot2::annotate("text",
+      x = c(4 * lambda[which.max(AOQ[, 1])], 4 * lambda[which.max(AOQ[, 2])]),
+      y = c(AOQ[, 1][which.max(AOQ[, 1])], AOQ[, 2][which.max(AOQ[, 2])]), label = sprintf("\n AOQL = %0.4f", round(c(AOQ[, 1][which.max(AOQ[, 1])], AOQ[, 2][which.max(AOQ[, 2])]), digits = 4)), size = 3
+    )
 
   # plot_sam
   return(plot_sam)
 }
-

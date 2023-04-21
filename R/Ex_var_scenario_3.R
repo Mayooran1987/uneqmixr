@@ -24,27 +24,27 @@
 ##'  n_sim = 2000000)
 ##' @usage  Ex_var_scenario_3 (mu, sd, m, K, type, measure, n_sim)
 ##' @export
-Ex_var_scenario_3 <- function(mu, sd = 0.8, m, K, type, measure, n_sim = NA){
-  lambda_0 <- 10^(mu + (sd^2/2) * log(10, exp(1)))
+Ex_var_scenario_3 <- function(mu, sd = 0.8, m, K, type, measure, n_sim = NA) {
+  lambda_0 <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
   if (measure == "expectation") {
     if (type == "theory") {
-      expect <-  (K/sum(m))*sum(m*(m/min(m))*lambda_0)
+      expect <- (K / sum(m)) * sum(m * (m / min(m)) * lambda_0)
       return(expect)
     } else if (type == "simulation") {
       if (is.na(n_sim) == TRUE) {
         stop("please set the number of simualtions")
       } else {
         k <- length(m)
-        lambda_0 <- 10^(mu + (sd^2/2) * log(10, exp(1)))
-        w <- m/sum(m)
+        lambda_0 <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
+        w <- m / sum(m)
         sim1 <- matrix(NA, nrow = n_sim, ncol = k)
         for (j in 1:k) {
-          sim1[,j] <-  extraDistr::rgpois(n_sim, shape = K, rate =  1/(m[j]*lambda_0/min(m)))
+          sim1[, j] <- extraDistr::rgpois(n_sim, shape = K, rate = 1 / (m[j] * lambda_0 / min(m)))
         }
         sim3 <- apply(sim1, 2, mean)
         sim4 <- matrix(NA, nrow = 1, ncol = k)
         for (j in 1:k) {
-          sim4[,j] <- sim3[j]*w[j]
+          sim4[, j] <- sim3[j] * w[j]
         }
         sim <- apply(sim4, 1, sum)
         result <- sum(sim)
@@ -55,23 +55,23 @@ Ex_var_scenario_3 <- function(mu, sd = 0.8, m, K, type, measure, n_sim = NA){
     }
   } else if (measure == "variance") {
     if (type == "theory") {
-      var <-  (K/(sum(m)*sum(m)))*((sum(m*m*m)*lambda_0/min(m)) + (sum(m*m*m*m)*lambda_0*lambda_0/(min(m)*min(m))))
+      var <- (K / (sum(m) * sum(m))) * ((sum(m * m * m) * lambda_0 / min(m)) + (sum(m * m * m * m) * lambda_0 * lambda_0 / (min(m) * min(m))))
       return(var)
     } else if (type == "simulation") {
       if (is.na(n_sim) == TRUE) {
         stop("please set the number of simualtions")
       } else {
         k <- length(m)
-        lambda_0 <- 10^(mu + (sd^2/2) * log(10, exp(1)))
-        w <- m/sum(m)
+        lambda_0 <- 10^(mu + (sd^2 / 2) * log(10, exp(1)))
+        w <- m / sum(m)
         sim1 <- matrix(NA, nrow = n_sim, ncol = k)
         for (j in 1:k) {
-          sim1[,j] <-  extraDistr::rgpois(n_sim, shape = K, rate =  1/(m[j]*lambda_0/min(m)))
+          sim1[, j] <- extraDistr::rgpois(n_sim, shape = K, rate = 1 / (m[j] * lambda_0 / min(m)))
         }
         sim3 <- apply(sim1, 2, var)
         sim4 <- matrix(NA, nrow = 1, ncol = k)
         for (j in 1:k) {
-          sim4[,j] <- sim3[j]*w[j]*w[j]
+          sim4[, j] <- sim3[j] * w[j] * w[j]
         }
         sim <- apply(sim4, 1, sum)
         result <- sim
@@ -84,7 +84,4 @@ Ex_var_scenario_3 <- function(mu, sd = 0.8, m, K, type, measure, n_sim = NA){
     print("Please choose measure as expectation or variance")
   }
   return(result)
-
 }
-
-
